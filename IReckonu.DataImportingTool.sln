@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29521.150
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IReckonu.DataImportingTool.API", "IReckonu.DataImportingTool\IReckonu.DataImportingTool.API.csproj", "{66EA6CD8-3902-4CA6-9659-0A44B055AC01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{47E9D891-69DE-4B7F-82DD-F7FBC98746B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{175C5E42-FFC4-4361-8E72-F7E4D3FE1D21}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{6A83C10F-C57A-48E6-8445-18842CC277E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IReckonu.DataImportingTool.Domain", "IReckonu.DataImportingTool.Domain\IReckonu.DataImportingTool.Domain.csproj", "{76EE1609-B600-431D-97F5-721B383F8750}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IReckonu.DataImportingTool.ApplicationServices.Abstractions", "IReckonu.DataImportingTool.ApplicationServices.Abstractions\IReckonu.DataImportingTool.ApplicationServices.Abstractions.csproj", "{635786E5-9D89-498F-9D09-499A72B09848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IReckonu.DataImportingTool.ApplicationServices", "IReckonu.DataImportingTool.ApplicationServices\IReckonu.DataImportingTool.ApplicationServices.csproj", "{C836FD43-A69D-4605-B37E-AF070C768F7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IReckonu.DataImportingTool.Data.Abstractions", "IReckonu.DataImportingTool.Data.Abstractions\IReckonu.DataImportingTool.Data.Abstractions.csproj", "{B3CA4C6C-BE3D-4B45-B84D-67BB15209D79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IReckonu.DataImportingTool.Data", "IReckonu.DataImportingTool.Data\IReckonu.DataImportingTool.Data.csproj", "{7283EE8D-6F88-4004-8EA1-FCF7B5D5AC27}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66EA6CD8-3902-4CA6-9659-0A44B055AC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66EA6CD8-3902-4CA6-9659-0A44B055AC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66EA6CD8-3902-4CA6-9659-0A44B055AC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66EA6CD8-3902-4CA6-9659-0A44B055AC01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76EE1609-B600-431D-97F5-721B383F8750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76EE1609-B600-431D-97F5-721B383F8750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76EE1609-B600-431D-97F5-721B383F8750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76EE1609-B600-431D-97F5-721B383F8750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{635786E5-9D89-498F-9D09-499A72B09848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{635786E5-9D89-498F-9D09-499A72B09848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{635786E5-9D89-498F-9D09-499A72B09848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{635786E5-9D89-498F-9D09-499A72B09848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C836FD43-A69D-4605-B37E-AF070C768F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C836FD43-A69D-4605-B37E-AF070C768F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C836FD43-A69D-4605-B37E-AF070C768F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C836FD43-A69D-4605-B37E-AF070C768F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3CA4C6C-BE3D-4B45-B84D-67BB15209D79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3CA4C6C-BE3D-4B45-B84D-67BB15209D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3CA4C6C-BE3D-4B45-B84D-67BB15209D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3CA4C6C-BE3D-4B45-B84D-67BB15209D79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7283EE8D-6F88-4004-8EA1-FCF7B5D5AC27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7283EE8D-6F88-4004-8EA1-FCF7B5D5AC27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7283EE8D-6F88-4004-8EA1-FCF7B5D5AC27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7283EE8D-6F88-4004-8EA1-FCF7B5D5AC27}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{66EA6CD8-3902-4CA6-9659-0A44B055AC01} = {6A83C10F-C57A-48E6-8445-18842CC277E2}
+		{76EE1609-B600-431D-97F5-721B383F8750} = {47E9D891-69DE-4B7F-82DD-F7FBC98746B3}
+		{635786E5-9D89-498F-9D09-499A72B09848} = {47E9D891-69DE-4B7F-82DD-F7FBC98746B3}
+		{C836FD43-A69D-4605-B37E-AF070C768F7E} = {47E9D891-69DE-4B7F-82DD-F7FBC98746B3}
+		{B3CA4C6C-BE3D-4B45-B84D-67BB15209D79} = {47E9D891-69DE-4B7F-82DD-F7FBC98746B3}
+		{7283EE8D-6F88-4004-8EA1-FCF7B5D5AC27} = {175C5E42-FFC4-4361-8E72-F7E4D3FE1D21}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25E8D91A-B81F-4A7A-84C5-14C3F48BAEE6}
+	EndGlobalSection
+EndGlobal
