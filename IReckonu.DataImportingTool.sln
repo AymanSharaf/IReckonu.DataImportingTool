@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IReckonu.DataImportingTool.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IReckonu.DataImportingTool.Data.Abstractions", "IReckonu.DataImportingTool.Data.Abstractions\IReckonu.DataImportingTool.Data.Abstractions.csproj", "{B3CA4C6C-BE3D-4B45-B84D-67BB15209D79}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IReckonu.DataImportingTool.Data", "IReckonu.DataImportingTool.Data\IReckonu.DataImportingTool.Data.csproj", "{7283EE8D-6F88-4004-8EA1-FCF7B5D5AC27}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "IReckonu.DataImportingTool.Database", "IReckonu.DataImportingTool.Database\IReckonu.DataImportingTool.Database.sqlproj", "{8E1CB8A4-617B-4969-8795-949D0190931C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IReckonu.DataImportingTool.Data.SqlServer", "IReckonu.DataImportingTool.Data.SqlServer\IReckonu.DataImportingTool.Data.SqlServer.csproj", "{55E2EB56-4819-41F7-AED2-FDE20CD92624}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,16 +49,16 @@ Global
 		{B3CA4C6C-BE3D-4B45-B84D-67BB15209D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3CA4C6C-BE3D-4B45-B84D-67BB15209D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3CA4C6C-BE3D-4B45-B84D-67BB15209D79}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7283EE8D-6F88-4004-8EA1-FCF7B5D5AC27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7283EE8D-6F88-4004-8EA1-FCF7B5D5AC27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7283EE8D-6F88-4004-8EA1-FCF7B5D5AC27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7283EE8D-6F88-4004-8EA1-FCF7B5D5AC27}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8E1CB8A4-617B-4969-8795-949D0190931C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E1CB8A4-617B-4969-8795-949D0190931C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E1CB8A4-617B-4969-8795-949D0190931C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{8E1CB8A4-617B-4969-8795-949D0190931C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E1CB8A4-617B-4969-8795-949D0190931C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8E1CB8A4-617B-4969-8795-949D0190931C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{55E2EB56-4819-41F7-AED2-FDE20CD92624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55E2EB56-4819-41F7-AED2-FDE20CD92624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55E2EB56-4819-41F7-AED2-FDE20CD92624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55E2EB56-4819-41F7-AED2-FDE20CD92624}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,8 +69,8 @@ Global
 		{635786E5-9D89-498F-9D09-499A72B09848} = {47E9D891-69DE-4B7F-82DD-F7FBC98746B3}
 		{C836FD43-A69D-4605-B37E-AF070C768F7E} = {47E9D891-69DE-4B7F-82DD-F7FBC98746B3}
 		{B3CA4C6C-BE3D-4B45-B84D-67BB15209D79} = {47E9D891-69DE-4B7F-82DD-F7FBC98746B3}
-		{7283EE8D-6F88-4004-8EA1-FCF7B5D5AC27} = {175C5E42-FFC4-4361-8E72-F7E4D3FE1D21}
 		{8E1CB8A4-617B-4969-8795-949D0190931C} = {175C5E42-FFC4-4361-8E72-F7E4D3FE1D21}
+		{55E2EB56-4819-41F7-AED2-FDE20CD92624} = {175C5E42-FFC4-4361-8E72-F7E4D3FE1D21}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25E8D91A-B81F-4A7A-84C5-14C3F48BAEE6}

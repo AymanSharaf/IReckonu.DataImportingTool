@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using IReckonu.DataImportingTool.Data.SqlServer.Database;
-using IReckonu.DataImportingTool.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;

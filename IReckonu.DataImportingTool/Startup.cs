@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -51,8 +53,10 @@ namespace IReckonu.DataImportingTool
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyModules(System.Reflection.Assembly.LoadFile($"{AssemblyDirectory}\\IReckonu.DataImportingTool.ApplicationServices.dll"));
-            builder.RegisterAssemblyModules(System.Reflection.Assembly.LoadFile($"{AssemblyDirectory}\\IReckonu.DataImportingTool.Data.dll"));
+            foreach (string dll in Directory.GetFiles(AssemblyDirectory, "*.dll"))
+            {
+                builder.RegisterAssemblyModules(Assembly.LoadFile(dll));
+            }
         }
 
 

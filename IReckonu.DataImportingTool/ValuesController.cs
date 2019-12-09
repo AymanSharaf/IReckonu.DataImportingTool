@@ -12,9 +12,9 @@ namespace IReckonu.DataImportingTool.API
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private readonly ISave<Brand> _save;
+        private readonly ISave _save;
 
-        public ValuesController(ISave<Brand> save)
+        public ValuesController(ISave save)
         {
             _save = save;
         }

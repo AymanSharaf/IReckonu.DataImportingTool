@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Data.Abstractions
 {
-    public interface ISave<T>
+    public interface ISave
     {
-        Task Save(T enity);
+        Task Save<T>(T enity);
     }
 }
