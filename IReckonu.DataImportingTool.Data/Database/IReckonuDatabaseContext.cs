@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Data.Database
 {
-    public class IReckonuDatabaseContext:DbContext
+    public class IReckonuDatabaseContext : DbContext
     {
 
         internal DbSet<Article> Articles { get; set; }
         internal DbSet<Product> Products { get; set; }
-        public IReckonuDatabaseContext(DbContextOptions options) :base(options)
+        public IReckonuDatabaseContext(DbContextOptions options) : base(options)
         {
-            
+            Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
