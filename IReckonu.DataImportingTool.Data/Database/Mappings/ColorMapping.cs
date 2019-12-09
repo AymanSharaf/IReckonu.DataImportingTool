@@ -9,14 +9,11 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Data.Database.Mappings
 {
-    public class ProductMapping : IEntityTypeConfiguration<Product>
+    public class ColorMapping : IEntityTypeConfiguration<Color>
     {
-        public void Configure(EntityTypeBuilder<Product> builder)
+        public void Configure(EntityTypeBuilder<Color> builder)
         {
             builder.HasKey(a => a.Id);
-            builder.OwnsOne(a => a.Price);
-            builder.HasOne<Color>().WithMany().HasForeignKey(a => a.ColorId);
-            builder.HasOne<DeliveryTime>().WithMany().HasForeignKey(a => a.DeliveryTimeId);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace IReckonu.DataImportingTool.Data
                 return new IReckonuDatabaseContext(options.Options);
             }).AsSelf().InstancePerLifetimeScope();
 
-            builder.RegisterType<SaveService<Product>>().AsImplementedInterfaces();
+            builder.RegisterType<SaveService<Brand>>().AsImplementedInterfaces();
         }
     }
 }

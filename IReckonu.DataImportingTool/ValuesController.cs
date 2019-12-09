@@ -12,16 +12,16 @@ namespace IReckonu.DataImportingTool.API
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private readonly ISave<Product> _save;
+        private readonly ISave<Brand> _save;
 
-        public ValuesController(ISave<Product> save)
+        public ValuesController(ISave<Brand> save)
         {
             _save = save;
         }
         [HttpGet]
         public async Task<IEnumerable<string>> Get()
         {
-           await _save.Save(new Product("dddddssssssssssssd") { } );
+           await _save.Save(new Brand("dddddssssssssssssd") );
             return new string[] { "value1", "value2" };
         }
 
