@@ -14,7 +14,7 @@ namespace IReckonu.DataImportingTool.Data.SqlServer.Database.Mappings
         public void Configure(EntityTypeBuilder<TargetGroup> builder)
         {
             builder.HasKey(a => a.Id);
-            builder.HasMany(a => a.Articles);
+            //builder.HasMany(a => a.Articles).WithOne().HasForeignKey(a=>a.TargetGroupId);
             builder.Metadata.FindNavigation(nameof(TargetGroup.Articles)).SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }

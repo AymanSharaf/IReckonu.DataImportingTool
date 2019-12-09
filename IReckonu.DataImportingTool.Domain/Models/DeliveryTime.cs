@@ -9,16 +9,16 @@ namespace IReckonu.DataImportingTool.Domain.Models
     public class DeliveryTime
     {
         public int Id { get;private set; }
-        public TimeSpan From { get;private set; }
-        public TimeSpan To { get; private set; }
+        public long From { get;private set; }
+        public long To { get; private set; }
         private DeliveryTime()
         {
                 
         }
         public DeliveryTime(TimeSpan from, TimeSpan to)
         {
-            From = from;
-            To = to;
+            From = from.Ticks;
+            To = to.Ticks;
         }
     }
 }

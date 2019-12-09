@@ -15,7 +15,8 @@ namespace IReckonu.DataImportingTool.Domain.Models
         public int ArticleId { get; private set; }
         public int ColorId { get; private set; }
         public int DeliveryTimeId { get; private set; }
-    
+        private Color _color;
+        private DeliveryTime _deliveryTime;
         private Product()
         {
                 
@@ -26,6 +27,8 @@ namespace IReckonu.DataImportingTool.Domain.Models
             Price = price;
             Size = size;
             ColorId = color.Id;
+            _color = color;
+            _deliveryTime = deliveryTime;
             DeliveryTimeId = deliveryTime.Id;
         }
         internal void SetArticleId(int articleId) 

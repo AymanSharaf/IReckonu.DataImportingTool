@@ -15,8 +15,8 @@ namespace IReckonu.DataImportingTool.Data.SqlServer.Database.Mappings
         {
             builder.HasKey(a => a.Id);
             builder.OwnsOne(a => a.Price);
-            builder.HasOne<Color>().WithMany().HasForeignKey(a => a.ColorId);
-            builder.HasOne<DeliveryTime>().WithMany().HasForeignKey(a => a.DeliveryTimeId);
+            builder.HasOne<Color>("_color").WithMany().HasForeignKey(a => a.ColorId);
+            builder.HasOne<DeliveryTime>("_deliveryTime").WithMany().HasForeignKey(a => a.DeliveryTimeId);
         }
     }
 }

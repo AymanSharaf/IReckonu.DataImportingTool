@@ -14,7 +14,7 @@ namespace IReckonu.DataImportingTool.Data.SqlServer.Database.Mappings
         public void Configure(EntityTypeBuilder<Brand> builder)
         {
             builder.HasKey(a => a.Id);
-            builder.HasMany<Article>().WithOne().HasForeignKey(a => a.BrandId);
+            //builder.HasMany<Article>().WithOne().HasForeignKey(a => a.BrandId);
         }
     }
 }
