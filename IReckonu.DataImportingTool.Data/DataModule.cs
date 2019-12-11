@@ -1,32 +1,18 @@
 ﻿using Autofac;
-using IReckonu.DataImportingTool.Data.SqlServer.Database;
-using IReckonu.DataImportingTool.Domain.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
+using IReckonu.DataImportingTool.Data.File;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IReckonu.DataImportingTool.Data.SqlServer
+namespace IReckonu.DataImportingTool.Data
 {
     public class DataModule:Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c =>
-            {
-                var config = c.Resolve<IConfiguration>();
-
-                var options = new DbContextOptionsBuilder<IReckonuDatabaseContext>();
-                options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
-
-                return new IReckonuDatabaseContext(options.Options);
-            }).AsSelf().InstancePerLifetimeScope();
-
-            builder.RegisterType<SaveService>().AsImplementedInterfaces();
+            builder.RegisterType<FileSaveService>().AsImplementedInterfaces();
         }
     }
 }
