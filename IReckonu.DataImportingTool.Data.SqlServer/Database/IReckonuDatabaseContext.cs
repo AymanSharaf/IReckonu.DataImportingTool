@@ -20,7 +20,7 @@ namespace IReckonu.DataImportingTool.Data.SqlServer.Database
         internal DbSet<Product> Products { get; set; }
         public IReckonuDatabaseContext(DbContextOptions options) : base(options)
         {
-           // Database.EnsureCreated(); // Workaround because i couldn't get the migrations to work on time, Also Instead of this we can use Databse Project
+           
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

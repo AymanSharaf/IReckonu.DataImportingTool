@@ -14,10 +14,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IReckonu.DataImportingTool.ApplicationServices.Abstractions\IReckonu.DataImportingTool.ApplicationServices.Abstractions.csproj" />
     <ProjectReference Include="..\IReckonu.DataImportingTool.Data.Abstractions\IReckonu.DataImportingTool.Data.Abstractions.csproj" />
     <ProjectReference Include="..\IReckonu.DataImportingTool.Domain\IReckonu.DataImportingTool.Domain.csproj" />
   </ItemGroup>

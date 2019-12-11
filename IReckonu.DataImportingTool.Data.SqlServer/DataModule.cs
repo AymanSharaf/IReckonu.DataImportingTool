@@ -15,6 +15,7 @@ namespace IReckonu.DataImportingTool.Data.SqlServer
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<ReckonuDatabaseContextFactory>().AsImplementedInterfaces();
             builder.Register(c =>
             {
                 var config = c.Resolve<IConfiguration>();
@@ -25,6 +26,7 @@ namespace IReckonu.DataImportingTool.Data.SqlServer
                 return new IReckonuDatabaseContext(options.Options);
             }).AsSelf().InstancePerLifetimeScope();
 
+         
             builder.RegisterType<SaveService>().AsImplementedInterfaces();
         }
     }
