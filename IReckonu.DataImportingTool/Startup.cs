@@ -30,7 +30,7 @@ namespace IReckonu.DataImportingTool
                 string codeBase = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
                 UriBuilder uri = new UriBuilder(codeBase);
                 string path = Uri.UnescapeDataString(uri.Path);
-                return System.IO.Path.GetDirectoryName(path);
+                return Path.GetDirectoryName(path);
             }
         }
         public Startup(IWebHostEnvironment env)
@@ -47,6 +47,10 @@ namespace IReckonu.DataImportingTool
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen(c=>
+            {
+                c.SwaggerDoc("v1",new Microsoft.OpenApi.Models.OpenApiInfo {Title="IReckonU API", Version= "v1" });
+            });
         }
 
 
@@ -63,6 +67,12 @@ namespace IReckonu.DataImportingTool
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+            app.UseSwagger();
+            app.UseSwaggerUI(c=>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json","IReckonU API V1");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
