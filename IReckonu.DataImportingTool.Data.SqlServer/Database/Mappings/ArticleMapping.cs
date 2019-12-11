@@ -15,8 +15,7 @@ namespace IReckonu.DataImportingTool.Data.SqlServer.Database.Mappings
         {
             builder.HasKey(a => a.Id);
             builder.HasMany(a => a.Products);
-            builder.HasOne<TargetGroup>("_targetGroup").WithMany().HasForeignKey(a => a.TargetGroupId);
-            builder.HasOne<Brand>("_brand").WithMany().HasForeignKey(a => a.BrandId);
+            builder.HasOne<Brand>().WithMany().HasForeignKey(a => a.BrandId);
             builder.Metadata.FindNavigation(nameof(Article.Products)).SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }
