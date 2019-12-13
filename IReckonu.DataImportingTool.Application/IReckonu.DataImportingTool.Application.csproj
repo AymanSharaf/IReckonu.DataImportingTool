@@ -2,11 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="copy /Y &quot;$(TargetDir)\*&quot; &quot;$(SolutionDir)IReckonu.DataImportingTool\bin\$(ConfigurationName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)\*&quot; &quot;$(SolutionDir)IReckonu.DataImportingTool.ProcessingApplication\bin\$(ConfigurationName)\&quot;" />
   </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IReckonu.DataImportingTool.Application.Abstractions\IReckonu.DataImportingTool.Application.Abstractions.csproj" />
+  </ItemGroup>
 
 
 </Project>

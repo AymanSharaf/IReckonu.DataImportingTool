@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Hangfire;
+using IReckonu.DataImportingTool.BackgroundJobs.Abstractions;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.BackgroundJobs.Hangfire
 {
-    public class HangfireConfigurator
+    public class HangfireConfigurator:IBackgroundServerConfigurator
     {
         private readonly IConfiguration configuration;
 
@@ -17,10 +18,10 @@ namespace IReckonu.DataImportingTool.BackgroundJobs.Hangfire
         {
             this.configuration = configuration;
         }
-        public void Configure(ContainerBuilder builder) 
+        public void Configure(IServiceProvider serviceProvider)
         {
             GlobalConfiguration.Configuration.UseSqlServerStorage(configuration.GetConnectionString("DefaultConnection"))
-                                      .UseActivator(new HangfireAutofacActivator(builder))
+                                      .UseActivator(new HangfireAutofacActivator(serviceProvider))
                                       .UseColouredConsoleLogProvider();
         }
     }

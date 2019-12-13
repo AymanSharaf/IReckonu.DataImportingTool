@@ -12,18 +12,15 @@ namespace IReckonu.DataImportingTool.BackgroundJobs.Hangfire
     {
         private IContainer _container;
         private readonly ContainerBuilder _containerBuilder;
+        private readonly IServiceProvider serviceProvider;
 
-        public HangfireAutofacActivator(ContainerBuilder containerBuilder)
+        public HangfireAutofacActivator(IServiceProvider serviceProvider)
         {
-            _containerBuilder = containerBuilder;
+            this.serviceProvider = serviceProvider;
         }
         public override object ActivateJob(Type jobType)
         {
-            if (_container == null)
-            {
-                _container = _containerBuilder.Build();
-            }
-            return _container.Resolve(jobType);
+            return serviceProvider.GetService(jobType);
         }
     }
 }

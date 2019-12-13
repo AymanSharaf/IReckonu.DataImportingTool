@@ -14,7 +14,7 @@ namespace IReckonu.DataImportingTool.BackgroundJobs.Hangfire
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<HangfireConfigurator>().AsSelf();
+            builder.RegisterType<HangfireConfigurator>().AsImplementedInterfaces();
             builder.RegisterType<HangFireBackgroundJobServer>().AsImplementedInterfaces();
             builder.RegisterType<FireAndForgetJobsScheduler>().AsImplementedInterfaces();
            

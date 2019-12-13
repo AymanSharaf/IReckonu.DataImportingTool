@@ -1,8 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Hangfire;
 using IReckonu.DataImportingTool.BackgroundJobs.Abstractions;
-using IReckonu.DataImportingTool.BackgroundJobs.Hangfire;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,7 +8,6 @@ using System;
 using System.IO;
 using System.Reflection;
 using Topshelf;
-using Topshelf.Autofac;
 
 namespace IReckonu.DataImportingTool.ProcessingApplication
 {
@@ -21,7 +18,7 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
         {
             get
             {
-                string codeBase = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
+                string codeBase = Assembly.GetExecutingAssembly().CodeBase;
                 UriBuilder uri = new UriBuilder(codeBase);
                 string path = Uri.UnescapeDataString(uri.Path);
                 return Path.GetDirectoryName(path);
@@ -45,7 +42,6 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                 {
                     builder.RegisterAssemblyModules(Assembly.LoadFile(dll));
                 }
-
             });
 
             var container = builder.Build();
@@ -60,12 +56,17 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                     {
                         var service = host.Services.GetRequiredService<IBackgroundJobServer>();
                         var config = host.Services.GetService<IConfiguration>();
-                        var configurator = new HangfireConfigurator(config);
-                        configurator.Configure(builder);                      
+                        //var configurator = new HangfireConfigurator(config);
+                        //configurator.Configure(host.Services);                      
                        
                         return service;
                     });
-                    service.WhenStarted(s => s.Start());
+                    service.WhenStarted(s => {
+                        var configurator = host.Services.GetService<IBackgroundServerConfigurator>(); 
+                        configurator.Configure(host.Services);
+                        s.Start();
+
+                    });
                     service.WhenStopped(service => service.Stop());
                 });
 
