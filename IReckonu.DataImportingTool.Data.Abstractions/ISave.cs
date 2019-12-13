@@ -10,4 +10,10 @@ namespace IReckonu.DataImportingTool.Data.Abstractions
     {
         Task Save<T>(T entity);
     }
+
+    public enum SaveTypes 
+    {
+        SQL,
+        JSON
+    }
 }

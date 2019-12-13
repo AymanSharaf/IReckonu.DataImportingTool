@@ -18,8 +18,8 @@ namespace IReckonu.DataImportingTool.Data
             builder.RegisterType<SaveFileService>().AsImplementedInterfaces();
             builder.RegisterType<GetFileService>().AsImplementedInterfaces();
             builder.RegisterDecorator<EnsurePathExistsFileSaveDecorator, ISaveFile>();
-            builder.RegisterType<JsonSaveService>().AsImplementedInterfaces();
-           // builder.RegisterDecorator<SaveComposite, ISave>();
+            builder.RegisterType<JsonSaveService>().Keyed<ISave>(SaveTypes.JSON);
+            builder.RegisterType<SaveComposite>().As<ISave>();
 
         }
     }

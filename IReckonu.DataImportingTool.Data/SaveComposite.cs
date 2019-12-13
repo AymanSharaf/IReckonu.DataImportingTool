@@ -1,4 +1,5 @@
-﻿using IReckonu.DataImportingTool.Data.Abstractions;
+﻿using Autofac.Features.Indexed;
+using IReckonu.DataImportingTool.Data.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Data
 {
-    public class SaveComposite:ISave
+    public class SaveComposite : ISave
     {
-        private readonly IEnumerable<ISave> _saves;
+        private readonly IIndex<SaveTypes, ISave> _saves;
 
-        public SaveComposite(IEnumerable<ISave> saves)
+        public SaveComposite(IIndex<SaveTypes, ISave> saves)
         {
             _saves = saves;
         }
 
         public async Task Save<T>(T entity)
         {
-            foreach (var saveInstance in _saves)
-            {
-                await saveInstance.Save(entity);
-            }
+            // This could be more clean 
+            var sqlSave = _saves[SaveTypes.SQL];
+            await sqlSave?.Save(entity);
+            var jsonSave = _saves[SaveTypes.JSON];
+            await jsonSave?.Save(entity);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace IReckonu.DataImportingTool.Data.Json
             var json = JsonConvert.SerializeObject(entity);
             var entityName = entity.GetType().Name;
             var fileName = $"{entityName}.json";
-            System.IO.File.AppendAllText($"{_configuration["JsonDataPath"]}{fileName}", json);
+            System.IO.File.AppendAllText($"{_configuration["JsonDataPath"]}{fileName}", json); // This should be Decorated To make sure the path exists
             return Task.FromResult(0);
 
         }

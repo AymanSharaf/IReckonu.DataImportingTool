@@ -13,16 +13,16 @@ namespace IReckonu.DataImportingTool.Domain.Models
         public string Code { get; private set; }
         public string Name { get; private set; }
         public int BrandId { get; private set; }
-        public int TargetGroupId { get;private set; }
-
+        public int TargetGroupId { get; private set; }
 
         private readonly List<Product> _products = new List<Product>();
+
         public IReadOnlyCollection<Product> Products => _products.AsReadOnly();
         private Article()
         {
 
         }
-        public Article(string code, string name, int brandId,int targetGroupId)
+        public Article(string code, string name, int brandId, int targetGroupId)
         {
             Guard.Against.NullOrEmpty(code, nameof(code));
             Guard.Against.NullOrEmpty(name, nameof(name));
@@ -32,7 +32,6 @@ namespace IReckonu.DataImportingTool.Domain.Models
             BrandId = brandId;
             TargetGroupId = targetGroupId;
         }
-
         public void AddProduct(string key, Price price, int size, int colorId, int deliveryTimeId)
         {
             var product = new Product(key, price, size, colorId, deliveryTimeId);

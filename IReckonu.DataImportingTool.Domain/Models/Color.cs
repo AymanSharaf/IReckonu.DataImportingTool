@@ -9,7 +9,7 @@ namespace IReckonu.DataImportingTool.Domain.Models
     public class Color
     {
         public int Id { get;private set; }
-        public string Name { get; set; }
+        public string Name { get;private set; }
         private Color()
         {
 

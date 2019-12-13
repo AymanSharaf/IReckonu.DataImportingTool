@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using IReckonu.DataImportingTool.Data.Abstractions;
 using IReckonu.DataImportingTool.Data.SqlServer.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -27,7 +28,7 @@ namespace IReckonu.DataImportingTool.Data.SqlServer
             }).AsSelf().InstancePerLifetimeScope();
 
          
-            builder.RegisterType<SaveService>().AsImplementedInterfaces();
+            builder.RegisterType<SaveService>().Keyed<ISave>(SaveTypes.SQL);
         }
     }
 }
