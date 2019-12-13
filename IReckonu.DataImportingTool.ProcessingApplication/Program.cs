@@ -43,7 +43,7 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                 foreach (string dll in Directory.GetFiles(AssemblyDirectory, "*.dll"))
                 {
                     builder.RegisterAssemblyModules(Assembly.LoadFile(dll));
-                   // Assembly.LoadFrom(dll); // This is essential to load dlls at run time but it  needs .deps.json file .... needs more investigation
+                    Assembly.LoadFrom(dll);
                 }
             });
 
@@ -59,9 +59,6 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                     {
                         var service = host.Services.GetRequiredService<IBackgroundJobServer>();
                         var config = host.Services.GetService<IConfiguration>();
-                        //var configurator = new HangfireConfigurator(config);
-                        //configurator.Configure(host.Services);                      
-
                         return service;
                     });
                     service.WhenStarted(s =>
@@ -69,7 +66,6 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                         var configurator = host.Services.GetService<IBackgroundServerConfigurator>();
                         configurator.Configure(host.Services);
                         s.Start();
-
                     });
                     service.WhenStopped(service => service.Stop());
                 });

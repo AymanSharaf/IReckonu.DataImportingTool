@@ -10,9 +10,6 @@ using Hangfire;
 using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -62,6 +59,7 @@ namespace IReckonu.DataImportingTool
         {
             foreach (string dll in Directory.GetFiles(AssemblyDirectory, "*.dll"))
             {
+                Assembly.LoadFrom(dll);
                 builder.RegisterAssemblyModules(Assembly.LoadFile(dll));
             }
         }
