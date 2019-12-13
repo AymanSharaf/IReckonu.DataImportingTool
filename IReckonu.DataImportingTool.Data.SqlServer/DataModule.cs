@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Data.SqlServer
 {
-    public class DataModule:Module
+    public class DataModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -28,11 +28,9 @@ namespace IReckonu.DataImportingTool.Data.SqlServer
                 return new IReckonuDatabaseContext(options.Options);
             }).AsSelf().InstancePerLifetimeScope();
 
-         
+
             builder.RegisterType<SaveService>().Keyed<ISave>(SaveTypes.SQL);
-            builder.RegisterDecorator<SaveChangesDecorator, ISave>(context =>context.CurrentInstance.GetType() ==typeof(SaveService));
-            //builder.RegisterDecorator<ISave>((c, inner) => new SaveChangesDecorator(inner, null), fromKey: SaveTypes.SQL);
-            //builder.RegisterGenericDecorator(typeof(SaveChangesDecorator), typeof(ISave), fromKey: SaveTypes.SQL);
+            builder.RegisterDecorator<SaveChangesDecorator, ISave>(context => context.CurrentInstance.GetType() == typeof(SaveService));
         }
     }
 }
