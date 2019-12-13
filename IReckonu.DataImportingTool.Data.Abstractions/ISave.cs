@@ -8,6 +8,6 @@ namespace IReckonu.DataImportingTool.Data.Abstractions
 {
     public interface ISave
     {
-        Task Save<T>(T enity);
+        Task Save<T>(T entity);
     }
 }

@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IReckonu.DataImportingTool.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IReckonu.DataImportingTool.Data.Abstractions", "IReckonu.DataImportingTool.Data.Abstractions\IReckonu.DataImportingTool.Data.Abstractions.csproj", "{0D3089CB-459A-4041-8787-EBB7FD366743}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IReckonu.DataImportingTool.Data", "IReckonu.DataImportingTool.Data\IReckonu.DataImportingTool.Data.csproj", "{21F9FAC4-E996-4D2A-917E-842EA569D23E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IReckonu.DataImportingTool.Data", "IReckonu.DataImportingTool.Data\IReckonu.DataImportingTool.Data.csproj", "{21F9FAC4-E996-4D2A-917E-842EA569D23E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

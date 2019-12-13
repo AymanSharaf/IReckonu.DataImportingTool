@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Data.Abstractions.File
 {
-    public interface IFileSave
+    public interface IGetFile
     {
-        void Save(string path, Stream stream);
+        Stream Get(string path);
     }
 }
