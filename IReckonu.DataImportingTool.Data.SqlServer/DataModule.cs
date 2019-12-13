@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using IReckonu.DataImportingTool.Data.Abstractions;
 using IReckonu.DataImportingTool.Data.SqlServer.Database;
+using IReckonu.DataImportingTool.Data.SqlServer.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +30,9 @@ namespace IReckonu.DataImportingTool.Data.SqlServer
 
          
             builder.RegisterType<SaveService>().Keyed<ISave>(SaveTypes.SQL);
+            builder.RegisterDecorator<SaveChangesDecorator, ISave>(context =>context.CurrentInstance.GetType() ==typeof(SaveService));
+            //builder.RegisterDecorator<ISave>((c, inner) => new SaveChangesDecorator(inner, null), fromKey: SaveTypes.SQL);
+            //builder.RegisterGenericDecorator(typeof(SaveChangesDecorator), typeof(ISave), fromKey: SaveTypes.SQL);
         }
     }
 }

@@ -19,7 +19,6 @@ namespace IReckonu.DataImportingTool.Data.SqlServer
         public async Task Save<T>(T enity)
         {
             _databaseContext.Attach(enity);
-            await _databaseContext.SaveChangesAsync();
         }
     }
 }
