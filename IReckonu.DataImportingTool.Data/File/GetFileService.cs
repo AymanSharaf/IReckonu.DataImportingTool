@@ -16,12 +16,6 @@ namespace IReckonu.DataImportingTool.Data.File
         }
         public async Task<string> Get(string path)
         {
-            var directory = Path.GetDirectoryName(path); // Move to decorator
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(path);
-            }
-
             using (StreamReader reader = new StreamReader(path))
             {
                 return await reader.ReadToEndAsync();

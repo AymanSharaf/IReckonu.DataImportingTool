@@ -10,8 +10,6 @@ namespace IReckonu.DataImportingTool.BackgroundJobs.Hangfire
 {
     public class HangfireAutofacActivator: JobActivator
     {
-        private IContainer _container;
-        private readonly ContainerBuilder _containerBuilder;
         private readonly IServiceProvider serviceProvider;
 
         public HangfireAutofacActivator(IServiceProvider serviceProvider)

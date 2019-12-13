@@ -19,7 +19,7 @@ namespace IReckonu.DataImportingTool.Data
 
         public async Task Save<T>(T entity)
         {
-            // This could be more clean 
+            // This could be more clean and generic 
             var sqlSave = _saves[SaveTypes.SQL];
             await sqlSave?.Save(entity);
             var jsonSave = _saves[SaveTypes.JSON];

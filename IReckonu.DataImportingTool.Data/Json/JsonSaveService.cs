@@ -23,7 +23,7 @@ namespace IReckonu.DataImportingTool.Data.Json
             _configuration = configuration;
             _getFile = getFile;
         }
-        public async Task Save<T>(T entity)
+        public async Task Save<T>(T entity) //SRP Violation suspect.... needs Review 
         {
             var entityName = entity.GetType().Name;
             var fileName = $"{entityName}.json";
