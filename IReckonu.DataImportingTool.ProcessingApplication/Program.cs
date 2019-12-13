@@ -5,7 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Collections.Concurrent;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Topshelf;
 
@@ -41,6 +43,7 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                 foreach (string dll in Directory.GetFiles(AssemblyDirectory, "*.dll"))
                 {
                     builder.RegisterAssemblyModules(Assembly.LoadFile(dll));
+                   // Assembly.LoadFrom(dll); // This is essential to load dlls at run time but it  needs .deps.json file .... needs more investigation
                 }
             });
 
@@ -58,11 +61,12 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                         var config = host.Services.GetService<IConfiguration>();
                         //var configurator = new HangfireConfigurator(config);
                         //configurator.Configure(host.Services);                      
-                       
+
                         return service;
                     });
-                    service.WhenStarted(s => {
-                        var configurator = host.Services.GetService<IBackgroundServerConfigurator>(); 
+                    service.WhenStarted(s =>
+                    {
+                        var configurator = host.Services.GetService<IBackgroundServerConfigurator>();
                         configurator.Configure(host.Services);
                         s.Start();
 
@@ -78,6 +82,5 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                 hostConfigrator.SetDescription("IReckonu.DataImportingTool.DataProcessingApplication: Background server that uses Hangfire as to process data");
             });
         }
-
     }
 }

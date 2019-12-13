@@ -12,23 +12,27 @@ namespace IReckonu.DataImportingTool.Data.File
     {
         public GetFileService()
         {
-                
+
         }
-        public Stream Get(string path)
+        public async Task<string> Get(string path)
         {
-            if (Directory.Exists(path))
+            var directory = Path.GetDirectoryName(path); // Move to decorator
+            if (!Directory.Exists(directory))
             {
-                using (StreamReader reader = new StreamReader(path))
-                {
-                    return reader.BaseStream;
-                } 
+                Directory.CreateDirectory(path);
             }
-            else
+
+            using (StreamReader reader = new StreamReader(path))
             {
-                throw new InvalidOperationException("Path not found"); // Needs to be reconsidered
+                return await reader.ReadToEndAsync();
             }
+
+            //else
+            //{
+            //    throw new InvalidOperationException("Path not found"); // Needs to be reconsidered
+            //}
         }
 
-        
+
     }
 }

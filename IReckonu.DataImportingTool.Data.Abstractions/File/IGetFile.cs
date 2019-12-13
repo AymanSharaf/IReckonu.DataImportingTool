@@ -9,6 +9,6 @@ namespace IReckonu.DataImportingTool.Data.Abstractions.File
 {
     public interface IGetFile
     {
-        Stream Get(string path);
+        Task<string> Get(string path);
     }
 }

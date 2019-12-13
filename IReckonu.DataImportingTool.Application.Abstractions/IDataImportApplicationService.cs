@@ -8,7 +8,7 @@ namespace IReckonu.DataImportingTool.Application.Abstractions
 {
     public interface IDataImportApplicationService:IApplicationService
     {
-        void Test();
+        Task Test();
         void Test2();
     }
 }
