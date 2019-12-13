@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="Hangfire" Version="1.7.8" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.7.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IReckonu.DataImportingTool.BackgroundJobs.Abstractions\IReckonu.DataImportingTool.BackgroundJobs.Abstractions.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /Y &quot;$(TargetDir)\*&quot; &quot;$(SolutionDir)IReckonu.DataImportingTool\bin\$(ConfigurationName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)\*&quot; &quot;$(SolutionDir)IReckonu.DataImportingTool.ProcessingApplication\bin\$(ConfigurationName)\&quot;" />
+  </Target>
+
+</Project>
