@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Domain.Models
 {
+    [Serializable]
     public class Color
     {
         public int Id { get;private set; }

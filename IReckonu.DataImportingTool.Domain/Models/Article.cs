@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Domain.Models
 {
+    [Serializable] // Not Sure about this, this was only added to support serialization to cache
     public class Article
     {
         public int Id { get; private set; }

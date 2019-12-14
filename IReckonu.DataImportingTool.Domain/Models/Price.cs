@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Domain.Models
 {
+    [Serializable]
     public class Price: IEquatable<Price>
     {
         public decimal Value { get;private set; }

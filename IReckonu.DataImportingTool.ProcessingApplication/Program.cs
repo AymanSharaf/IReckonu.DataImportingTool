@@ -43,6 +43,9 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                    var builder = config
                          .SetBasePath(AppDomain.CurrentDomain.BaseDirectory.ToString())
                         .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true);
+               }).ConfigureServices(services => 
+               {
+                   services.AddDistributedMemoryCache();
                })
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>(builder =>
