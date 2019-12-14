@@ -4,6 +4,7 @@ using IReckonu.DataImportingTool.Data.Abstractions;
 using IReckonu.DataImportingTool.Data.Abstractions.File;
 using IReckonu.DataImportingTool.Domain.Models;
 using Microsoft.Extensions.Configuration;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,23 +18,27 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
     {
         private readonly IFireAndForgetJobsScheduler _fireAndForgetJobsScheduler;
         private readonly IFileManagementApplicationService _fileManagementApplicationService;
+        private readonly ILogger _logger;
 
         public DataImportApplicationService(IFireAndForgetJobsScheduler fireAndForgetJobsScheduler,
-                                            IFileManagementApplicationService fileManagementApplicationService)
+                                            IFileManagementApplicationService fileManagementApplicationService,
+                                            ILogger logger)
         {
             _fireAndForgetJobsScheduler = fireAndForgetJobsScheduler;
             _fileManagementApplicationService = fileManagementApplicationService;
+            this._logger = logger;
         }
 
         public void ImportData(Stream streamInput)
         {
+            throw new Exception("Errrrrrrrrror");
             var fileName = $"DataSheet-{DateTime.UtcNow.ToFileTimeUtc()}.csv";
             _fileManagementApplicationService.SaveFileToNotProcessedFolder(fileName, streamInput);
             var dataProcessingJobId = _fireAndForgetJobsScheduler.EnqueueJob<IDataProcessingApplicationService>(c => c.ProcessFile(fileName));
             _fireAndForgetJobsScheduler.ContinueJobWith<IFileManagementApplicationService>(dataProcessingJobId, c => c.MoveFileToProcessedFolder(fileName));
         }
 
-        public async Task Test()
+        public void Test()
         {
             Console.WriteLine("Hello from the background");
             var targetGroup = new TargetGroup("babyBoooy");
