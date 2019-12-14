@@ -10,6 +10,6 @@ namespace IReckonu.DataImportingTool.Application.Abstractions
     public interface IFileManagementApplicationService
     {
         void MoveFileToProcessedFolder(string fileName);
-        void SaveFileToNotProcessedFolder(string fileName, Stream fileStream);
+        void SaveFileToUnderProcessingFolder(string fileName, Stream fileStream);
     }
 }
