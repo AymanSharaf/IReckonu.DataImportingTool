@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IReckonu.DataImportingTool.Application.Abstractions\IReckonu.DataImportingTool.Application.Abstractions.csproj" />
     <ProjectReference Include="..\IReckonu.DataImportingTool.Data.Abstractions\IReckonu.DataImportingTool.Data.Abstractions.csproj" />
   </ItemGroup>
 

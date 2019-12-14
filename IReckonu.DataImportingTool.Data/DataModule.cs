@@ -21,6 +21,7 @@ namespace IReckonu.DataImportingTool.Data
             builder.RegisterDecorator<EnsurePathExistsGetFileSerivceDecorator, IGetFile>();
             builder.RegisterType<JsonSaveService>().Keyed<ISave>(SaveTypes.JSON);
             builder.RegisterType<SaveComposite>().As<ISave>();
+            builder.RegisterType<CsvFileDeserialzer>().AsImplementedInterfaces();
 
         }
     }

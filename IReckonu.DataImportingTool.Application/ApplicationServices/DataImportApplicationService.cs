@@ -1,7 +1,9 @@
 ﻿using IReckonu.DataImportingTool.Application.Abstractions;
 using IReckonu.DataImportingTool.BackgroundJobs.Abstractions;
 using IReckonu.DataImportingTool.Data.Abstractions;
+using IReckonu.DataImportingTool.Data.Abstractions.File;
 using IReckonu.DataImportingTool.Domain.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +16,14 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
     {
         private readonly IFireAndForgetJobsScheduler fireAndForgetJobsScheduler;
         private readonly ISave _save;
-        public DataImportApplicationService(IFireAndForgetJobsScheduler fireAndForgetJobsScheduler, ISave save)
+        private readonly IConfiguration _configuration;
+        private readonly IFileDeserialzer _fileDeserialzer;
+
+        public DataImportApplicationService(IFireAndForgetJobsScheduler fireAndForgetJobsScheduler, ISave save,IConfiguration configuration, IFileDeserialzer fileDeserialzer)
         {
             _save = save;
+            this._configuration = configuration;
+            this._fileDeserialzer = fileDeserialzer;
             this.fireAndForgetJobsScheduler = fireAndForgetJobsScheduler;
         }
         public async Task Test()
@@ -29,7 +36,10 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
             //var color = new Color("Reeed");
             //article.AddProduct("Keey", new Price(100, 10), 10, color, deliveryTime);
             //article.AddProduct("Keey2", new Price(100, 10), 10, color, deliveryTime);
-             await _save.Save(targetGroup);
+            // await _save.Save(targetGroup);
+            var fileName = "DataSheet-132205698851325804.csv";
+            var path = $"{_configuration["StoredFilesPath"]}{fileName}";
+            var result = _fileDeserialzer.Deserialize(path);
         }
 
         public void Test2()

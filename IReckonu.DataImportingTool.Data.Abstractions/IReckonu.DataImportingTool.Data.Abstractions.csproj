@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IReckonu.DataImportingTool.Domain\IReckonu.DataImportingTool.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
