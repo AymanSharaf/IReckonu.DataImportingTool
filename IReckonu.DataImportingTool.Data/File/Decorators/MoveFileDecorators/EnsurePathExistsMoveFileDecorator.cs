@@ -23,7 +23,7 @@ namespace IReckonu.DataImportingTool.Data.File.Decorators.MoveFileDecorators
 
             if (!Directory.Exists(directory))
             {
-                Directory.CreateDirectory(toPath);
+                Directory.CreateDirectory(directory);
             }
             _moveFile.MoveFile(fromPath, toPath);
         }

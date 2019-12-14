@@ -30,14 +30,18 @@ namespace IReckonu.DataImportingTool.Data.Json
 
             var existingFileContent = await _getFile.Get($"{_configuration["JsonDataPath"]}{fileName}");
 
-            var existingJson = JsonConvert.DeserializeObject<List<T>>(existingFileContent)?? new List<T>();
+            var jsonSettings = new JsonSerializerSettings();
+            jsonSettings.ContractResolver = new ReadonlyJsonDefaultContractResolver();
+            jsonSettings.ConstructorHandling= ConstructorHandling.AllowNonPublicDefaultConstructor;
+
+            var existingJson = JsonConvert.DeserializeObject<List<T>>(existingFileContent, jsonSettings) ?? new List<T>();
 
             if (!existingJson.Any(a=>a.Equals(entity))) 
             {
                 existingJson.Add(entity);
             }
-
-            System.IO.File.WriteAllText($"{_configuration["JsonDataPath"]}{fileName}", JsonConvert.SerializeObject(existingJson)); 
+            var serializedFinalString = JsonConvert.SerializeObject(existingJson, jsonSettings);
+            System.IO.File.WriteAllText($"{_configuration["JsonDataPath"]}{fileName}", serializedFinalString); 
 
         }
     }

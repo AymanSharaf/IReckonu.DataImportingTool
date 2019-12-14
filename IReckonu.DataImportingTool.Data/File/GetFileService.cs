@@ -16,15 +16,19 @@ namespace IReckonu.DataImportingTool.Data.File
         }
         public async Task<string> Get(string path)
         {
-            using (StreamReader reader = new StreamReader(path))
+            try
             {
-                return await reader.ReadToEndAsync();
-            }
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    return await reader.ReadToEndAsync();
+                }
 
-            //else
-            //{
-            //    throw new InvalidOperationException("Path not found"); // Needs to be reconsidered
-            //}
+            }
+            catch
+            {
+
+                return string.Empty; // A workaround .. needs revisit
+            }
         }
 
 

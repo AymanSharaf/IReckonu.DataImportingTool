@@ -12,7 +12,7 @@ namespace IReckonu.DataImportingTool.Data.File
     {
         public void Save(string path, Stream stream)
         {
-            using (var fileStream = new FileStream(path, FileMode.Create))
+            using (var fileStream = new FileStream(path, FileMode.OpenOrCreate))
             {
                 stream.CopyTo(fileStream);
             }

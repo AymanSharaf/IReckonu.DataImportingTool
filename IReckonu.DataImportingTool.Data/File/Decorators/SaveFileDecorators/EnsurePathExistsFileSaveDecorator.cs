@@ -21,7 +21,7 @@ namespace IReckonu.DataImportingTool.Data.File.Decorators
             var directory = Path.GetDirectoryName(path);
             if (!Directory.Exists(directory)) 
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(directory);
             }
             _fileSave.Save(path,stream);
         }

@@ -22,7 +22,7 @@ namespace IReckonu.DataImportingTool.Data.File.Decorators
 
             if (!Directory.Exists(directory))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(directory);
             }
             return await _getFile.Get(path);
         }
