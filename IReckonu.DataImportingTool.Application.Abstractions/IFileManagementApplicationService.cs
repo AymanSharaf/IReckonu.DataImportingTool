@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Application.Abstractions
 {
-    public interface IDataImportApplicationService : IApplicationService
+    public interface IFileManagementApplicationService
     {
-        void ImportData(Stream streamInput);
+        void MoveFileToProcessedFolder(string fileName);
+        void SaveFileToNotProcessedFolder(string fileName, Stream fileStream);
     }
 }

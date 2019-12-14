@@ -11,14 +11,14 @@ namespace IReckonu.DataImportingTool.BackgroundJobs.Hangfire.Schedulers
 {
     public class FireAndForgetJobsScheduler : IFireAndForgetJobsScheduler
     {
-        public void ContinueJobWith<T>(string parentJobId, Expression<Action<T>> methodCall)
+        public string  ContinueJobWith<T>(string parentJobId, Expression<Action<T>> methodCall)
         {
-            BackgroundJob.ContinueJobWith(parentJobId , methodCall);
+           return BackgroundJob.ContinueJobWith(parentJobId , methodCall);
         }
 
-        public void EnqueueJob<T>(Expression<Action<T>> methodCall)
+        public string EnqueueJob<T>(Expression<Action<T>> methodCall)
         {
-            BackgroundJob.Enqueue<T>(methodCall);
+           return BackgroundJob.Enqueue<T>(methodCall);
         }
     }
 }

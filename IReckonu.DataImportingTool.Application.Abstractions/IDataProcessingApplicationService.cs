@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Application.Abstractions
 {
-    public interface IDataImportApplicationService : IApplicationService
+    public interface IDataProcessingApplicationService
     {
-        void ImportData(Stream streamInput);
+        Task ProcessFile(string fileName);
     }
 }

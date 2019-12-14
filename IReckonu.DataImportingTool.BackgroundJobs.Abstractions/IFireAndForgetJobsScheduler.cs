@@ -9,7 +9,7 @@ namespace IReckonu.DataImportingTool.BackgroundJobs.Abstractions
 {
     public interface IFireAndForgetJobsScheduler
     {
-        void EnqueueJob<T>(Expression<Action<T>> methodCall);
-        void ContinueJobWith<T>(string parentJobId,Expression<Action<T>> methodCall);
+        string EnqueueJob<T>(Expression<Action<T>> methodCall);
+        string ContinueJobWith<T>(string parentJobId,Expression<Action<T>> methodCall);
     }
 }

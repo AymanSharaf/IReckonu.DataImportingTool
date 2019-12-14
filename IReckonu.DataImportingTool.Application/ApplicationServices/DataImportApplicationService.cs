@@ -6,6 +6,7 @@ using IReckonu.DataImportingTool.Domain.Models;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,18 +15,24 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
 {
     public class DataImportApplicationService : IDataImportApplicationService
     {
-        private readonly IFireAndForgetJobsScheduler fireAndForgetJobsScheduler;
-        private readonly ISave _save;
-        private readonly IConfiguration _configuration;
-        private readonly IFileDeserialzer _fileDeserialzer;
+        private readonly IFireAndForgetJobsScheduler _fireAndForgetJobsScheduler;
+        private readonly IFileManagementApplicationService _fileManagementApplicationService;
 
-        public DataImportApplicationService(IFireAndForgetJobsScheduler fireAndForgetJobsScheduler, ISave save,IConfiguration configuration, IFileDeserialzer fileDeserialzer)
+        public DataImportApplicationService(IFireAndForgetJobsScheduler fireAndForgetJobsScheduler,
+                                            IFileManagementApplicationService fileManagementApplicationService)
         {
-            _save = save;
-            this._configuration = configuration;
-            this._fileDeserialzer = fileDeserialzer;
-            this.fireAndForgetJobsScheduler = fireAndForgetJobsScheduler;
+            _fireAndForgetJobsScheduler = fireAndForgetJobsScheduler;
+            _fileManagementApplicationService = fileManagementApplicationService;
         }
+
+        public void ImportData(Stream streamInput)
+        {
+            var fileName = $"DataSheet-{DateTime.UtcNow.ToFileTimeUtc()}.csv";
+            _fileManagementApplicationService.SaveFileToNotProcessedFolder(fileName, streamInput);
+            var dataProcessingJobId = _fireAndForgetJobsScheduler.EnqueueJob<IDataProcessingApplicationService>(c => c.ProcessFile(fileName));
+            _fireAndForgetJobsScheduler.ContinueJobWith<IFileManagementApplicationService>(dataProcessingJobId, c => c.MoveFileToProcessedFolder(fileName));
+        }
+
         public async Task Test()
         {
             Console.WriteLine("Hello from the background");
@@ -37,14 +44,9 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
             //article.AddProduct("Keey", new Price(100, 10), 10, color, deliveryTime);
             //article.AddProduct("Keey2", new Price(100, 10), 10, color, deliveryTime);
             // await _save.Save(targetGroup);
-            var fileName = "DataSheet-132205698851325804.csv";
-            var path = $"{_configuration["StoredFilesPath"]}{fileName}";
-            var result = _fileDeserialzer.Deserialize(path);
-        }
-
-        public void Test2()
-        {
-            fireAndForgetJobsScheduler.EnqueueJob<IDataImportApplicationService>(c=>c.Test());
+            //var fileName = "DataSheet-132205698851325804.csv";
+            //var path = $"{_configuration["StoredFilesPath"]}{fileName}";
+            //var result = _fileDeserialzer.Deserialize(path);
         }
     }
 }
