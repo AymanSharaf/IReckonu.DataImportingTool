@@ -16,7 +16,7 @@ namespace IReckonu.DataImportingTool.Data.File
         {
                 
         }
-        public async Task<List<ImportDataFileInput>> Deserialize(string filePath) // needs Enhancement
+        public List<ImportDataFileInput> Deserialize(string filePath) // needs Enhancement
         {
             CsvParserOptions csvParserOptions = new CsvParserOptions(true, ',');
             ImportDataFileInputMapping csvMapper = new ImportDataFileInputMapping();

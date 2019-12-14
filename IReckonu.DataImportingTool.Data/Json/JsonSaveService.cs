@@ -28,14 +28,15 @@ namespace IReckonu.DataImportingTool.Data.Json
             var entityName = entity.GetType().Name;
             var fileName = $"{entityName}.json";
 
-            var existingFileContent = await _getFile.Get($"{_configuration["JsonDataPath"]}{fileName}");// This should be Decorated To make sure the path exists
-
+            var existingFileContent = await _getFile.Get($"{_configuration["JsonDataPath"]}{fileName}");
 
             var existingJson = JsonConvert.DeserializeObject<List<T>>(existingFileContent)?? new List<T>();
+
             if (!existingJson.Any(a=>a.Equals(entity))) 
             {
                 existingJson.Add(entity);
             }
+
             System.IO.File.WriteAllText($"{_configuration["JsonDataPath"]}{fileName}", JsonConvert.SerializeObject(existingJson)); 
 
         }

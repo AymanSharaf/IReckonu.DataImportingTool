@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IReckonu.DataImportingTool.Data.File
+namespace IReckonu.DataImportingTool.Data.File.Decorators
 {
     public class EnsurePathExistsFileSaveDecorator : ISaveFile
     {

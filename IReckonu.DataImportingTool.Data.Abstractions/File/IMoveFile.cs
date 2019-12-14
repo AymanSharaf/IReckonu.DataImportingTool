@@ -1,5 +1,4 @@
-﻿using IReckonu.DataImportingTool.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Data.Abstractions.File
 {
-    public interface IFileDeserialzer
+    public interface IMoveFile
     {
-        List<ImportDataFileInput> Deserialize(string filePath);
+        void MoveFile(string fromPath, string toPath);
     }
 }
