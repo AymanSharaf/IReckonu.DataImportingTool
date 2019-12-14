@@ -15,6 +15,11 @@ namespace IReckonu.DataImportingTool.Domain.Models
         {
                 
         }
+        public DeliveryTime(long from, long to) // This is only because of serialization problems
+        {
+            From = from;
+            To = to;
+        }
         public DeliveryTime(TimeSpan from, TimeSpan to)
         {
             From = from.Ticks;

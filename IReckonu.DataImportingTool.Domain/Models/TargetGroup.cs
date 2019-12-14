@@ -8,14 +8,14 @@ namespace IReckonu.DataImportingTool.Domain.Models
 {
     public class TargetGroup
     {
-        public int Id { get;private set; }
-        public string Name { get;private set; }
+        public int Id { get; private set; }
+        public string Name { get; private set; }
         private readonly List<Article> _articles = new List<Article>();
         public IReadOnlyCollection<Article> Articles => _articles.AsReadOnly();
 
         private TargetGroup()
         {
-                
+
         }
 
         public TargetGroup(string name)
@@ -23,10 +23,14 @@ namespace IReckonu.DataImportingTool.Domain.Models
             Name = name;
         }
 
-        public void AddArticle(Article article) 
+        public void AddArticle(string code, string name,int brandId) // SRP Violation ?
         {
             // Validation on incoming Article
-            _articles.Add(article);
+            var exisitngArticle = _articles.SingleOrDefault(a => a.Code == code && a.Name == name && a.BrandId == brandId);
+            if (exisitngArticle == null)
+            {
+                _articles.Add(new Article(code, name, brandId, Id));
+            }
         }
     }
 }

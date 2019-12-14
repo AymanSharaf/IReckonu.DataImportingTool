@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Domain.Models
 {
-    public class Price
+    public class Price: IEquatable<Price>
     {
         public decimal Value { get;private set; }
         public decimal Discount { get;private set; }
@@ -20,6 +20,11 @@ namespace IReckonu.DataImportingTool.Domain.Models
         public decimal Total() 
         {
             return Value - (Value * (Discount / 100));
+        }
+
+        public bool Equals(Price other)
+        {
+            return other.Value == Value && other.Discount == Discount;
         }
     }
 }
