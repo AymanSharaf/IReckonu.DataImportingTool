@@ -29,6 +29,7 @@ namespace IReckonu.DataImportingTool.Data.SqlServer
             }).AsSelf().InstancePerLifetimeScope();
 
 
+            builder.RegisterType<GetService>().AsImplementedInterfaces();
             builder.RegisterType<SaveService>().Keyed<ISave>(SaveTypes.SQL);
             builder.RegisterDecorator<SaveChangesDecorator, ISave>(context => context.CurrentInstance.GetType() == typeof(SaveService));
         }
