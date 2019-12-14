@@ -1,6 +1,7 @@
 ﻿using IReckonu.DataImportingTool.Application.Abstractions;
 using IReckonu.DataImportingTool.Data.Abstractions;
 using IReckonu.DataImportingTool.Data.Abstractions.File;
+using IReckonu.DataImportingTool.Domain;
 using IReckonu.DataImportingTool.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -30,37 +31,51 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
 
             foreach (var serializedObject in serilizedObjects)
             {
-                //Add decorator to IGet to cache the entities
-                var targetGroup = await GetTargetGroup(serializedObject.Q1);
-
-                var brand = await ProcessBrand(serializedObject.Description);
-                var color = await ProcessColor(serializedObject.Color);
-                var deliveryTime = await ProcessDeliveryTime(serializedObject.DeliveredIn);
-
-                var article = GetArticle(targetGroup, serializedObject.ColorCode, serializedObject.ArtikelCode, brand);
-
-                targetGroup.AddArticle(article.Code, article.Name, article.BrandId);
-
-                targetGroup.Articles.Single(a=>a.Code == article.Code && a.Name == article.Name && a.BrandId == brand.Id)
-                                    .AddProduct(serializedObject.Key, new Price(serializedObject.Price, serializedObject.DiscountPrice),
-                                                serializedObject.Size, color.Id, deliveryTime.Id);
-
-
-                if (targetGroups.All(a=> a.Name != targetGroup.Name)) // Reconsider the check over the name 
-                {
-                    targetGroups.Add(targetGroup);
-                }
+                await ProcessImportDataFileInputRecord(targetGroups, serializedObject);
             }
+
+            await SaveTargetGroups(targetGroups);
+
+        }
+
+        private async Task SaveTargetGroups(List<TargetGroup> targetGroups)
+        {
             foreach (var targetGroup in targetGroups)
             {
                 await _save.Save(targetGroup);
             }
-
         }
 
-        private async Task<TargetGroup> GetTargetGroup(string targetGroupName)
+        private async Task ProcessImportDataFileInputRecord(List<TargetGroup> targetGroups, ImportDataFileInput input)
         {
-            var targetGroup = await _get.Get<TargetGroup>(b => b.Name == targetGroupName);
+            //Add decorator to IGet to cache the entities
+            var targetGroup = await GetTargetGroup(targetGroups, input.Q1);
+
+            var brand = await ProcessBrand(input.Description);
+            var color = await ProcessColor(input.Color);
+            var deliveryTime = await ProcessDeliveryTime(input.DeliveredIn);
+
+            ProcessArticle(targetGroup, input.ColorCode, input.ArtikelCode, brand);
+
+            ProcessProduct(targetGroup, input, color, deliveryTime, brand);
+
+            if (targetGroups.All(a => a.Name != targetGroup.Name))
+            {
+                targetGroups.Add(targetGroup);
+            }
+        }
+
+        private void ProcessProduct(TargetGroup targetGroup, ImportDataFileInput input, Color color, DeliveryTime deliveryTime,Brand brand)
+        {
+            targetGroup.Articles.Single(a => a.Code == input.ArtikelCode && a.Name == input.ColorCode && a.BrandId == brand.Id).AddProduct(input.Key, new Price(input.Price, input.DiscountPrice),
+                               input.Size, color.Id, deliveryTime.Id);
+        }
+
+        private async Task<TargetGroup> GetTargetGroup(List<TargetGroup> targetGroups, string targetGroupName)
+        {
+            var targetGroup = targetGroups.SingleOrDefault(t => t.Name == targetGroupName) ??
+                                await _get.Get<TargetGroup>(b => b.Name == targetGroupName);
+            ;
             if (targetGroup == null)
             {
                 targetGroup = new TargetGroup(targetGroupName);
@@ -68,14 +83,14 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
             return targetGroup;
         }
 
-        private Article GetArticle(TargetGroup targetGroup, string articleName, string articleCode, Brand brand)
+        private void ProcessArticle(TargetGroup targetGroup, string articleName, string articleCode, Brand brand)
         {
             var article = targetGroup.Articles.SingleOrDefault(a => a.Name == articleName && a.Code == articleCode && a.BrandId == brand.Id);
             if (article == null)
             {
-                article = new Article(articleCode, articleName, brand.Id, targetGroup.Id);
+                targetGroup.AddArticle(articleCode, articleName, brand.Id);
             }
-            return article;
+            //return article;
         }
 
         private async Task<Brand> ProcessBrand(string brandName)
