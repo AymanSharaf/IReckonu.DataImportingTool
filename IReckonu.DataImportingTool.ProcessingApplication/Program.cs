@@ -13,6 +13,13 @@ using Topshelf;
 
 namespace IReckonu.DataImportingTool.ProcessingApplication
 {
+    /* Please Note : This application should be published as self-contained app(Deployment Type) and targets win-x64 (Target Runtime) 
+       Not Tested here 
+       To Install the windows service: dotnet IReckonu.DataImportingTool.ProcessingApplication.dll install
+       To Start the windows service: dotnet IReckonu.DataImportingTool.ProcessingApplication.dll start
+       To Stop the windows service: dotnet IReckonu.DataImportingTool.ProcessingApplication.dll stop
+       To Uninstall the windows service: dotnet IReckonu.DataImportingTool.ProcessingApplication.dll uninstall
+    */
     class Program
     {
         public IConfiguration Configuration { get; set; }
