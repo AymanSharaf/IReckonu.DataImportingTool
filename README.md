@@ -67,8 +67,8 @@ _Criteria: Your implementation properly follows all SOLID principles._
 ## How to Run
 > **Note:* Admin* Privilege is required (to save files)
 
-1- Run Update-Database using project: IReckonu.DataImportingTool.Data.SqlServer while using IReckonu.DataImportingTool.ProcessingApplication as your startup project (will fails if API project is the startup project due to dynamic assembly loading)
+1- Run `Update-Database` using project: **IReckonu.DataImportingTool.Data.SqlServer** while using **IReckonu.DataImportingTool.ProcessingApplication** as your startup project (will fails if API project is the startup project due to dynamic assembly loading)
 
-2- Run IReckonu.DataImportingTool.ProcessingApplication
+2- Run **IReckonu.DataImportingTool.ProcessingApplication**
 
-3- Run IReckonu.DataImportingTool.API
+3- Run **IReckonu.DataImportingTool.API**
