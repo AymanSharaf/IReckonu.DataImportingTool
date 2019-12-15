@@ -41,10 +41,12 @@ _Criteria: Your implementation properly follows all SOLID principles._
 
 -  ASP.NET Core 3.1
 -  .NET Core 3.1
+-  SQL Server
 -  Autofac
 -  Hangfire
 -  Topshelf (Could have been replaced with  [service worker](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-3.1&tabs=visual-studio) )
 - [TinyCsvParser](http://bytefish.github.io/TinyCsvParser/index.html) (choosed based on this [Link](https://dotnetcoretutorials.com/2018/08/04/csv-parsing-in-net-core/))
+- Distributed Caching (In-memory)
 
 
 ## Possible Enhancements
