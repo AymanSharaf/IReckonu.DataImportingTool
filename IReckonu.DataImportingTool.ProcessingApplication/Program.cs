@@ -35,8 +35,10 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
         }
         static void Main(string[] args)
         {
-            var builder = new ContainerBuilder();
+            Directory.GetFiles(AssemblyDirectory, "*.dll").ToList().ForEach(a => Assembly.LoadFrom(a));
 
+            var builder = new ContainerBuilder();
+            
             var hostBuilder = new HostBuilder()
                .ConfigureAppConfiguration((hostContext, config) =>
                {
@@ -50,11 +52,9 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>(builder =>
             {
-                foreach (string dll in Directory.GetFiles(AssemblyDirectory, "*.dll"))
-                {
-                    builder.RegisterAssemblyModules(Assembly.LoadFile(dll));
-                    Assembly.LoadFrom(dll);
-                }
+                Directory.GetFiles(AssemblyDirectory, "*.dll").ToList()
+                         .ForEach(a => builder.RegisterAssemblyModules(Assembly.LoadFile(a)));
+
             });
 
             var container = builder.Build();

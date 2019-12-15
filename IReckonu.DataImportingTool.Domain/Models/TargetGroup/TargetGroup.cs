@@ -10,9 +10,13 @@ namespace IReckonu.DataImportingTool.Domain.Models
     public class TargetGroup
     {
         public int Id { get; private set; }
+
         public string Name { get; private set; }
-        private readonly List<Article> _articles = new List<Article>();
+
         public IReadOnlyCollection<Article> Articles => _articles.AsReadOnly();
+
+        private readonly List<Article> _articles = new List<Article>();
+     
 
         private TargetGroup()
         {
