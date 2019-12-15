@@ -1,5 +1,7 @@
-﻿using IReckonu.DataImportingTool.Data.Abstractions;
+﻿using Autofac.Features.Indexed;
+using IReckonu.DataImportingTool.Data.Abstractions;
 using IReckonu.DataImportingTool.Data.SqlServer.Database;
+using IReckonu.DataImportingTool.Data.SqlServer.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,7 +22,7 @@ namespace IReckonu.DataImportingTool.Data.SqlServer.Services
         }
         public async Task<T> Get<T>(Expression<Func<T, bool>> predicate) where T: class
         {
-           return await _databaseContext.Set<T>().SingleOrDefaultAsync(predicate);
+           return await _databaseContext.Set<T>().AsNoTracking().Include(_databaseContext.GetIncludePaths(typeof(T))).SingleOrDefaultAsync(predicate);
         }
     }
 }

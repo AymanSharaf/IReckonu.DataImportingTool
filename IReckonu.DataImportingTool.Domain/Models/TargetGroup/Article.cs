@@ -36,8 +36,9 @@ namespace IReckonu.DataImportingTool.Domain.Models
         public void AddProduct(string key, Price price, int size, int colorId, int deliveryTimeId)
         {
 
-            var existingProduct = _products.SingleOrDefault(p => p.Key == key &&
-                                            p.Price == price &&
+            var existingProduct = _products.SingleOrDefault(p =>
+                                            p.Key.Equals(key) &&
+                                            p.Price.Equals(price) &&
                                             p.Size == size &&
                                             p.ColorId == colorId &&
                                             p.DeliveryTimeId == deliveryTimeId);

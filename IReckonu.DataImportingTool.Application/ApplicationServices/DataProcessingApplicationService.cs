@@ -48,7 +48,6 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
 
         private async Task ProcessImportDataFileInputRecord(List<TargetGroup> targetGroups, ImportDataFileInput input)
         {
-            //Add decorator to IGet to cache the entities
             var targetGroup = await GetTargetGroup(targetGroups, input.Q1);
 
             var brand = await ProcessBrand(input.Description);
@@ -73,8 +72,9 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
 
         private async Task<TargetGroup> GetTargetGroup(List<TargetGroup> targetGroups, string targetGroupName)
         {
-            var targetGroup = targetGroups.SingleOrDefault(t => t.Name == targetGroupName) ??
-                                await _get.Get<TargetGroup>(b => b.Name == targetGroupName);
+            var targetGroup = await _get.Get<TargetGroup>(b => b.Name == targetGroupName) ??
+                                targetGroups.SingleOrDefault(t => t.Name == targetGroupName);
+                                
             ;
             if (targetGroup == null)
             {
@@ -90,7 +90,6 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
             {
                 targetGroup.AddArticle(articleCode, articleName, brand.Id);
             }
-            //return article;
         }
 
         private async Task<Brand> ProcessBrand(string brandName)
@@ -126,29 +125,6 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
             }
             return deliveryTime;
         }
-
-        //private bool CheckTargetGroupExists(List<TargetGroup> targetGroups, string name)
-        //{
-        //    return targetGroups.Any(t => t.Name.ToLower() == name.ToLower());
-        //}
-        //private bool CheckBrandExists(List<Brand> brands, string name)
-        //{
-        //    return brands.Any(t => t.Name.ToLower() == name.ToLower());
-        //}
-        //private (bool exists, DeliveryTime deliveryTime) CheckDeliveryTimeExists(List<DeliveryTime> deliveryTimes, string deliveredIn)
-        //{
-        //    var deliveredInValues = deliveredIn.Split(' ')[0].Split('-').Select(a => int.Parse(a)).Select(a => TimeSpan.FromDays(a));
-        //    var exisitngDeliveryTime = deliveryTimes.SingleOrDefault(a => a.From == deliveredInValues.ElementAt(0).Ticks && a.To == deliveredInValues.ElementAt(1).Ticks);
-        //    if (exisitngDeliveryTime != null)
-        //    {
-        //        return (true, exisitngDeliveryTime);
-        //    }
-        //    else
-        //    {
-        //        return (false, new DeliveryTime(deliveredInValues.ElementAt(0), deliveredInValues.ElementAt(1)));
-        //    }
-        //}
-
 
     }
 }
