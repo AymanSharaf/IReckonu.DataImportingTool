@@ -13,11 +13,14 @@ namespace IReckonu.DataImportingTool.Data.Caching
     {
         private readonly IGet _get;
         private readonly IDistributedCache _distributedCache;
+        private readonly DistributedCacheEntryOptions _distributedCacheEntryOptions;
 
         public CachedGetService(IGet get, IDistributedCache distributedCache)
         {
             _get = get;
             _distributedCache = distributedCache;
+            _distributedCacheEntryOptions = new DistributedCacheEntryOptions()
+                                            .SetSlidingExpiration(TimeSpan.FromMinutes(2));
         }
         public async Task<T> Get<T>(Expression<Func<T, bool>> predicate) where T : class
         {
@@ -30,12 +33,10 @@ namespace IReckonu.DataImportingTool.Data.Caching
             {
                 cachedEntity = await _get.Get<T>(predicate);
 
-                var options = new DistributedCacheEntryOptions()
-                  .SetSlidingExpiration(TimeSpan.FromHours(1));
                 if (cachedEntity != null) 
                 {
                     cachedEntites.Add(cachedEntity);
-                    await _distributedCache.SetAsync<List<T>>(cachingKey, cachedEntites, options);
+                    await _distributedCache.SetAsync<List<T>>(cachingKey, cachedEntites, _distributedCacheEntryOptions);
                 }              
             }
             return cachedEntity;

@@ -25,6 +25,7 @@ namespace IReckonu.DataImportingTool.Data.File
             var result = csvParser
                 .ReadFromFile(filePath, Encoding.ASCII)
                 .ToList().Select(a=>a.Result).ToList();
+
             return result;
         }
     }
