@@ -51,13 +51,17 @@ _Criteria: Your implementation properly follows all SOLID principles._
 
 - Write Unit Tests 
 - Eliminate SRP Violations
+- Reconsider Database Context lifetime in Hangefire application 
+- Reconsider Serializable attribute on domain models
 - Docker (Compose)
 - Enhance Dynamic Assembly loading
 - Finish Caching Save Decorator
 - TinyCsvParser parallel Processing
 - Parallel Processing 
 -  Review Naming Conventions
-
+- Add Redis as caching server and as message queue
+- Remove Hangfire and go completely Event Driven (consider [outbox](http://www.kamilgrzybek.com/design/the-outbox-pattern/) )
+- Save files to azure using azure storage
 ## How to Run
 > **Note:* Admin* Privilege is required (to save files)
 
