@@ -41,10 +41,12 @@ _Criteria: Your implementation properly follows all SOLID principles._
 
 -  ASP.NET Core 3.1
 -  .NET Core 3.1
+-  SQL Server
 -  Autofac
 -  Hangfire
 -  Topshelf (Could have been replaced with  [service worker](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-3.1&tabs=visual-studio) )
 - [TinyCsvParser](http://bytefish.github.io/TinyCsvParser/index.html) (choosed based on this [Link](https://dotnetcoretutorials.com/2018/08/04/csv-parsing-in-net-core/))
+- Distributed Caching (In-memory)
 
 
 ## Possible Enhancements
@@ -65,8 +67,8 @@ _Criteria: Your implementation properly follows all SOLID principles._
 ## How to Run
 > **Note:* Admin* Privilege is required (to save files)
 
-1- Run Update-Database using project: IReckonu.DataImportingTool.Data.SqlServer while using IReckonu.DataImportingTool.ProcessingApplication as your startup project (will fails if API project is the startup project due to dynamic assembly loading)
+1- Run `Update-Database` using project: **IReckonu.DataImportingTool.Data.SqlServer** while using **IReckonu.DataImportingTool.ProcessingApplication** as your startup project (will fails if API project is the startup project due to dynamic assembly loading)
 
-2- Run IReckonu.DataImportingTool.ProcessingApplication
+2- Run **IReckonu.DataImportingTool.ProcessingApplication**
 
-3- Run IReckonu.DataImportingTool.API
+3- Run **IReckonu.DataImportingTool.API**
