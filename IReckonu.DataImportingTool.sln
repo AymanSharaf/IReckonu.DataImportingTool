@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29521.150
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IReckonu.DataImportingTool.API", "IReckonu.DataImportingTool\IReckonu.DataImportingTool.API.csproj", "{66EA6CD8-3902-4CA6-9659-0A44B055AC01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IReckonu.DataImportingTool.API", "IReckonu.DataImportingTool.API\IReckonu.DataImportingTool.API.csproj", "{66EA6CD8-3902-4CA6-9659-0A44B055AC01}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{47E9D891-69DE-4B7F-82DD-F7FBC98746B3}"
 EndProject

@@ -26,4 +26,10 @@
     <ProjectReference Include="..\IReckonu.DataImportingTool.Application.Abstractions\IReckonu.DataImportingTool.Application.Abstractions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

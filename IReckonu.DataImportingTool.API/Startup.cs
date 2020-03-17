@@ -50,7 +50,7 @@ namespace IReckonu.DataImportingTool
             {
                 c.SwaggerDoc("v1",new Microsoft.OpenApi.Models.OpenApiInfo {Title="IReckonU API", Version= "v1" });
             });
-            JobStorage.Current = new SqlServerStorage(Configuration.GetConnectionString("DefaultConnection"));
+            JobStorage.Current = new SqlServerStorage("DefaultConnection");
         }
 
 
