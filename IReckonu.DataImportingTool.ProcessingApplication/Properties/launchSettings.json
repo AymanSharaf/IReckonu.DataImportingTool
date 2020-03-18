@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "IReckonu.DataImportingTool.ProcessingApplication": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
