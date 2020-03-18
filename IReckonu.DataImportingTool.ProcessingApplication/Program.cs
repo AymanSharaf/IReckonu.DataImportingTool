@@ -14,7 +14,7 @@ using Topshelf;
 namespace IReckonu.DataImportingTool.ProcessingApplication
 {
     /* Please Note : This application should be published as self-contained app(Deployment Type) and targets win-x64 (Target Runtime) 
-       Not Tested here 
+
        To Install the windows service: dotnet IReckonu.DataImportingTool.ProcessingApplication.dll install
        To Start the windows service: dotnet IReckonu.DataImportingTool.ProcessingApplication.dll start
        To Stop the windows service: dotnet IReckonu.DataImportingTool.ProcessingApplication.dll stop
@@ -38,14 +38,14 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
             Directory.GetFiles(AssemblyDirectory, "*.dll").ToList().ForEach(a => Assembly.LoadFrom(a));
 
             var builder = new ContainerBuilder();
-            
+
             var hostBuilder = new HostBuilder()
                .ConfigureAppConfiguration((hostContext, config) =>
                {
                    var builder = config
                          .SetBasePath(AppDomain.CurrentDomain.BaseDirectory.ToString())
                         .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true);
-               }).ConfigureServices(services => 
+               }).ConfigureServices(services =>
                {
                    services.AddDistributedMemoryCache();
                })
@@ -54,39 +54,10 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
             {
                 Directory.GetFiles(AssemblyDirectory, "*.dll").ToList()
                          .ForEach(a => builder.RegisterAssemblyModules(Assembly.LoadFile(a)));
-
             });
 
-            var container = builder.Build();
-            var host = hostBuilder.Build();
-
-
-            HostFactory.Run(hostConfigrator =>
-            {
-                hostConfigrator.Service<IBackgroundJobServer>(service =>
-                {
-                    service.ConstructUsing(settings =>
-                    {
-                        var service = host.Services.GetRequiredService<IBackgroundJobServer>();
-                        var config = host.Services.GetService<IConfiguration>();
-                        return service;
-                    });
-                    service.WhenStarted(s =>
-                    {
-                        var configurator = host.Services.GetService<IBackgroundServerConfigurator>();
-                        configurator.Configure(host.Services);
-                        s.Start();
-                    });
-                    service.WhenStopped(service => service.Stop());
-                });
-
-                hostConfigrator.RunAsLocalSystem()
-                  .StartAutomatically();
-
-                hostConfigrator.SetServiceName("IReckonu.DataImportingTool.DataProcessingApplication");
-                hostConfigrator.SetDisplayName("IReckonu.DataImportingTool.DataProcessingApplication");
-                hostConfigrator.SetDescription("IReckonu.DataImportingTool.DataProcessingApplication: Background server that uses Hangfire as to process data");
-            });
+            TopshelfStarter.Start(builder.Build(), hostBuilder.Build());
         }
+
     }
 }
