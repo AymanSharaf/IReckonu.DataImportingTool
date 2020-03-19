@@ -25,15 +25,15 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
 
         public void MoveFileToProcessedFolder(string fileName)
         {
-            var filePath = $"{_configuration["StoredFilesPath"]}\\UnderProcessing\\{fileName}"; // Maybe move folderName to Configurations
-            var toPath = $"{_configuration["StoredFilesPath"]}\\Processed\\{fileName}";
+            var filePath = $"{_configuration["StoredUnderProcessingFilesPath"]}{fileName}";
+            var toPath = $"{_configuration["StoredProcessedFilesPath"]}{fileName}";
             _moveFile.MoveFile(filePath, toPath);
 
         }
 
         public void SaveFileToUnderProcessingFolder(string fileName, Stream fileStream)
         {
-            var filePath = $"{_configuration["StoredFilesPath"]}\\UnderProcessing\\{fileName}";
+            var filePath = $"{_configuration["StoredUnderProcessingFilesPath"]}{fileName}";
             _saveFile.Save(filePath, fileStream);
         }
     }

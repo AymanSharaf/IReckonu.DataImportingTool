@@ -28,7 +28,7 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
             _fileManagementApplicationService.SaveFileToUnderProcessingFolder(fileName, streamInput);
 
             var dataProcessingJobId = _fireAndForgetJobsScheduler.EnqueueJob<IDataProcessingApplicationService>(c =>
-                                        c.ProcessFile($"{_configuration["StoredFilesPath"]}\\UnderProcessing\\{ fileName}"));
+                                        c.ProcessFile($"{_configuration["StoredUnderProcessingFilesPath"]}{ fileName}"));
 
             _fireAndForgetJobsScheduler.ContinueJobWith<IFileManagementApplicationService>(dataProcessingJobId, c => c.MoveFileToProcessedFolder(fileName));
         }

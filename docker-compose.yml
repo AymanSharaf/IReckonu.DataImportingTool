@@ -12,6 +12,9 @@ services:
         depends_on: 
             - sqlserver
             - backgroundServer
+        volumes: 
+                - E:\JsonDataStore:/var/JsonDataStore
+                - E:\FileStorage:/var/FileStorage
     backgroundServer:
         image: dataimportingtool.backgroundserverv1.0
         container_name: dataimportingtool.backgroundserverv1.0
@@ -20,6 +23,9 @@ services:
             dockerfile: BackgroundServer.Dockerfile
         depends_on: 
             - sqlserver
+        volumes: 
+            - E:\JsonDataStore:/var/JsonDataStore
+            - E:\FileStorage:/var/FileStorage
     sqlserver:
         image: "mcr.microsoft.com/mssql/server:2017-latest"
         container_name: SqlServer

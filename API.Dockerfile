@@ -4,7 +4,6 @@ WORKDIR /build
 COPY . .
 RUN dotnet restore
 RUN dotnet publish -c Release -o /app "./IReckonu.DataImportingTool.Data/IReckonu.DataImportingTool.Data.csproj"
-RUN dotnet publish -c Release -o /app "./IReckonu.DataImportingTool.Data.Caching/IReckonu.DataImportingTool.Data.Caching.csproj"
 RUN dotnet publish -c Release -o /app "./IReckonu.DataImportingTool.Data.SqlServer/IReckonu.DataImportingTool.Data.SqlServer.csproj"
 RUN dotnet publish -c Release -o /app "./IReckonu.DataImportingTool.Application/IReckonu.DataImportingTool.Application.csproj"
 RUN dotnet publish -c Release -o /app "./IReckonu.DataImportingTool.BackgroundJobs.Hangfire/IReckonu.DataImportingTool.BackgroundJobs.Hangfire.csproj"
