@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+    api:
+        image: dataimportingtool.clientv1.0
+        container_name: dataimportingtool.apiv1.0
+        build: 
+            context: .
+            dockerfile: API.Dockerfile
+        ports: 
+            - 5000:80 
+        depends_on: 
+            - sqlserver
+            - backgroundServer
+    backgroundServer:
+        image: dataimportingtool.backgroundserverv1.0
+        container_name: dataimportingtool.backgroundserverv1.0
+        build: 
+            context: .
+            dockerfile: BackgroundServer.Dockerfile
+        depends_on: 
+            - sqlserver
+    sqlserver:
+        image: "mcr.microsoft.com/mssql/server:2017-latest"
+        container_name: SqlServer
+        environment:
+            SA_PASSWORD: "P@ssw0rd"
+            ACCEPT_EULA: "Y"
+        ports: 
+            - 1433:1433
+        volumes: 
+            - C:\Databases:/var/opt/mssql/data
