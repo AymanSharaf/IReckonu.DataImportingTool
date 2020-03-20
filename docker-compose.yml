@@ -4,6 +4,8 @@ services:
     api:
         image: dataimportingtool.clientv1.0
         container_name: dataimportingtool.apiv1.0
+        environment:
+            - ASPNETCORE_ENVIRONMENT = Production
         build: 
             context: .
             dockerfile: API.Dockerfile
@@ -15,9 +17,12 @@ services:
         volumes: 
                 - E:\JsonDataStore:/var/JsonDataStore
                 - E:\FileStorage:/var/FileStorage
+
     backgroundServer:
         image: dataimportingtool.backgroundserverv1.0
         container_name: dataimportingtool.backgroundserverv1.0
+        environment:
+            - ENVIRONMENT = Production
         build: 
             context: .
             dockerfile: BackgroundServer.Dockerfile
@@ -26,6 +31,7 @@ services:
         volumes: 
             - E:\JsonDataStore:/var/JsonDataStore
             - E:\FileStorage:/var/FileStorage
+
     sqlserver:
         image: "mcr.microsoft.com/mssql/server:2017-latest"
         container_name: SqlServer

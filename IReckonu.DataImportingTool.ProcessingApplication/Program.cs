@@ -36,6 +36,7 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
         static void Main(string[] args)
         {
             Directory.GetFiles(AssemblyDirectory, "*.dll").ToList().ForEach(a => Assembly.LoadFrom(a));
+            var environmentName = Environment.GetEnvironmentVariable("ENVIRONMENT");
 
             var builder = new ContainerBuilder();
 
@@ -44,7 +45,10 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                {
                    var builder = config
                          .SetBasePath(AppDomain.CurrentDomain.BaseDirectory.ToString())
-                        .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true);
+                        .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
+                        .AddJsonFile($"appsettings.{environmentName}.json", optional: true)
+                        .AddEnvironmentVariables();
+
                }).ConfigureServices(services =>
                {
                    services.AddDistributedMemoryCache();
