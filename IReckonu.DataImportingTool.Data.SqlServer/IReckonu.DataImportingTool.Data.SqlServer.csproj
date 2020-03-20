@@ -30,10 +30,8 @@
     <ProjectReference Include="..\IReckonu.DataImportingTool.Domain\IReckonu.DataImportingTool.Domain.csproj" />
   </ItemGroup>
 
-  <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug'">
     <Exec Command="copy /Y &quot;$(TargetDir)\*&quot; &quot;$(SolutionDir)IReckonu.DataImportingTool\bin\$(ConfigurationName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)\*&quot; &quot;$(SolutionDir)IReckonu.DataImportingTool.ProcessingApplication\bin\$(ConfigurationName)\&quot;" />
-  </Target>-->
+  </Target>
   
-
-
 </Project>
