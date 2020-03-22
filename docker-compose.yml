@@ -5,7 +5,7 @@ services:
         image: dataimportingtool.clientv1.0
         container_name: dataimportingtool.apiv1.0
         environment:
-            - ASPNETCORE_ENVIRONMENT = Production
+            - ASPNETCORE_ENVIRONMENT= Production
         build: 
             context: .
             dockerfile: API.Dockerfile
@@ -22,7 +22,7 @@ services:
         image: dataimportingtool.backgroundserverv1.0
         container_name: dataimportingtool.backgroundserverv1.0
         environment:
-            - ENVIRONMENT = Production
+            - ENVIRONMENT= Production
         build: 
             context: .
             dockerfile: BackgroundServer.Dockerfile
@@ -42,3 +42,5 @@ services:
             - 1433:1433
         volumes: 
             - C:\Databases:/var/opt/mssql/data
+        healthcheck:
+                test: sqlcmd -S SqlServer -U SA -P 'P@ssw0rd' -Q 'select @@SERVERNAME'
