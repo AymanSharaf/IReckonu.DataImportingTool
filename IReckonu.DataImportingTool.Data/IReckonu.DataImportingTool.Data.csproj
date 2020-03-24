@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug'">
-    <Exec Command="copy /Y &quot;$(TargetDir)\*&quot; &quot;$(SolutionDir)IReckonu.DataImportingTool\bin\$(ConfigurationName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)\*&quot; &quot;$(SolutionDir)IReckonu.DataImportingTool.ProcessingApplication\bin\$(ConfigurationName)\&quot;" />
+    <Exec Command="copy /Y &quot;$(TargetDir)\*&quot; &quot;$(SolutionDir)IReckonu.DataImportingTool.API\bin\$(ConfigurationName)\&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)\*&quot; &quot;$(SolutionDir)IReckonu.DataImportingTool.ProcessingApplication\bin\$(ConfigurationName)\&quot;" />
   </Target>
 
   <ItemGroup>
