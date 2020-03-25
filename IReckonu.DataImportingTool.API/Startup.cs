@@ -39,6 +39,12 @@ namespace IReckonu.DataImportingTool
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
             .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
             .AddEnvironmentVariables();
+
+            if (env.IsDevelopment())
+            {
+                builder.AddUserSecrets<Startup>();
+            }
+
             Configuration = builder.Build();
         }
 
@@ -50,7 +56,7 @@ namespace IReckonu.DataImportingTool
             {
                 c.SwaggerDoc("v1",new Microsoft.OpenApi.Models.OpenApiInfo {Title="IReckonU API", Version= "v1" });
             });
-            JobStorage.Current = new SqlServerStorage(Configuration.GetConnectionString("DefaultConnection"));
+            JobStorage.Current = new SqlServerStorage(Configuration["DataImportingTool:DefaultConnection"]);
         }
 
 

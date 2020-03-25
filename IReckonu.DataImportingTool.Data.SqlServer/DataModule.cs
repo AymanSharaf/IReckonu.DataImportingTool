@@ -23,7 +23,7 @@ namespace IReckonu.DataImportingTool.Data.SqlServer
                 var config = c.Resolve<IConfiguration>();
 
                 var options = new DbContextOptionsBuilder<IReckonuDatabaseContext>();
-                options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(config["DataImportingTool:DefaultConnection"]);
 
                 return new IReckonuDatabaseContext(options.Options);
             }).AsSelf().InstancePerLifetimeScope();

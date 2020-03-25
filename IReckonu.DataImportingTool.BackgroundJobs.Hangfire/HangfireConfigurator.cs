@@ -20,7 +20,7 @@ namespace IReckonu.DataImportingTool.BackgroundJobs.Hangfire
         }
         public void Configure(IServiceProvider serviceProvider)
         {
-            GlobalConfiguration.Configuration.UseSqlServerStorage(configuration.GetConnectionString("DefaultConnection"))
+            GlobalConfiguration.Configuration.UseSqlServerStorage(configuration["DataImportingTool:DefaultConnection"])
                                       .UseActivator(new HangfireAutofacActivator(serviceProvider))
                                       .UseColouredConsoleLogProvider();
         }
