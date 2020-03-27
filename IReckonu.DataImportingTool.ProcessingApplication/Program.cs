@@ -40,6 +40,8 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
 
             var builder = new ContainerBuilder();
 
+
+
             var hostBuilder = new HostBuilder()
                .ConfigureAppConfiguration((hostContext, config) =>
                {
@@ -48,6 +50,11 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                         .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
                         .AddJsonFile($"appsettings.{environmentName}.json", optional: true)
                         .AddEnvironmentVariables();
+
+                   if (environmentName.Equals("Development"))
+                   {
+                       builder.AddUserSecrets<Program>();
+                   }
 
                }).ConfigureServices(services =>
                {
