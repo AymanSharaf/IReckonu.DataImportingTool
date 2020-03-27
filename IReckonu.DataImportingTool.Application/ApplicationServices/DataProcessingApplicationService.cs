@@ -1,4 +1,5 @@
 ﻿using IReckonu.DataImportingTool.Application.Abstractions;
+using IReckonu.DataImportingTool.Application.Dtos;
 using IReckonu.DataImportingTool.Data.Abstractions;
 using IReckonu.DataImportingTool.Data.Abstractions.File;
 using IReckonu.DataImportingTool.Domain;
@@ -13,11 +14,11 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
 {
     public class DataProcessingApplicationService : IDataProcessingApplicationService
     {
-        private readonly IFileDeserialzer _fileDeserialzer;
+        private readonly ICsvDeserializer _fileDeserialzer;
         private readonly ISave _save;
         private readonly IGet _get;
 
-        public DataProcessingApplicationService(IFileDeserialzer fileDeserialzer, ISave save, IGet get)
+        public DataProcessingApplicationService(ICsvDeserializer fileDeserialzer, ISave save, IGet get)
         {
             _fileDeserialzer = fileDeserialzer;
             _save = save;
@@ -26,7 +27,7 @@ namespace IReckonu.DataImportingTool.Application.ApplicationServices
 
         public async Task ProcessFile(string path)
         {
-            var serilizedObjects = _fileDeserialzer.Deserialize(path);
+            var serilizedObjects = _fileDeserialzer.Deserialize<ImportDataFileInput>(path);
             var targetGroups = new List<TargetGroup>();
 
             foreach (var serializedObject in serilizedObjects)

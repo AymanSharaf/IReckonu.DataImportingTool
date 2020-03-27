@@ -28,7 +28,7 @@ namespace IReckonu.DataImportingTool.Data.Json
             var entityName = entity.GetType().Name;
             var fileName = $"{entityName}.json";
 
-            var existingFileContent = await _getFile.Get($"{_configuration["JsonDataPath"]}{fileName}");
+            var existingFileContent = await _getFile.Get($"{_configuration["JsonDataPath"]}\\{fileName}");
 
             var jsonSettings = new JsonSerializerSettings();
             jsonSettings.ContractResolver = new ReadonlyJsonDefaultContractResolver();
@@ -41,7 +41,7 @@ namespace IReckonu.DataImportingTool.Data.Json
                 existingJson.Add(entity);
             }
             var serializedFinalString = JsonConvert.SerializeObject(existingJson, jsonSettings);
-            System.IO.File.WriteAllText($"{_configuration["JsonDataPath"]}{fileName}", serializedFinalString); 
+            System.IO.File.WriteAllText($"{_configuration["JsonDataPath"]}\\{fileName}", serializedFinalString); 
 
         }
     }

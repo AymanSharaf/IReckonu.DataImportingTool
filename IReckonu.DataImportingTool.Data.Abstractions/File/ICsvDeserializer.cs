@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace IReckonu.DataImportingTool.Data.Abstractions.File
 {
-    public interface IFileDeserialzer
+    public interface ICsvDeserializer
     {
-        List<ImportDataFileInput> Deserialize(string filePath);
+        IList<T> Deserialize<T>(string filePath);
     }
 }

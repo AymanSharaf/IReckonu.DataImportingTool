@@ -10,13 +10,13 @@ using TinyCsvParser;
 
 namespace IReckonu.DataImportingTool.Data.File
 {
-    public class CsvFileDeserialzer : IFileDeserialzer
+    public class TinyCsvFileDeserializer : ICsvDeserializer
     {
-        public CsvFileDeserialzer()
+        public TinyCsvFileDeserializer()
         {
                 
         }
-        public List<ImportDataFileInput> Deserialize(string filePath) // needs Enhancement
+        public List<T> Deserialize<T>(string filePath) // needs Enhancement
         {
             CsvParserOptions csvParserOptions = new CsvParserOptions(true, ',');
             ImportDataFileInputMapping csvMapper = new ImportDataFileInputMapping();
