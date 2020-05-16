@@ -33,14 +33,13 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                 return Path.GetDirectoryName(path);
             }
         }
+
         static void Main(string[] args)
         {
             Directory.GetFiles(AssemblyDirectory, "*.dll").ToList().ForEach(a => Assembly.LoadFrom(a));
             var environmentName = Environment.GetEnvironmentVariable("ENVIRONMENT");
 
             var builder = new ContainerBuilder();
-
-
 
             var hostBuilder = new HostBuilder()
                .ConfigureAppConfiguration((hostContext, config) =>
