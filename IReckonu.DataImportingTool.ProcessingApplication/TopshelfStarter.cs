@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Castle.Core.Configuration;
 using IReckonu.DataImportingTool.BackgroundJobs.Abstractions;
+using IReckonu.DataImportingTool.Data.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -25,9 +26,11 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
                         var service = host.Services.GetRequiredService<IBackgroundJobServer>();
                         return service;
                     });
-                    service.WhenStarted(s =>
+                    service.WhenStarted(async s =>
                     {
                         var configurator = host.Services.GetService<IBackgroundServerConfigurator>();
+                        var databaseInitializer = host.Services.GetService<IDatabaseInitializer>();
+                        await databaseInitializer.Initialize();
                         configurator.Configure(host.Services);
                         s.Start();
                     });

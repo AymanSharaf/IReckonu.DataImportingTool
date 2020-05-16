@@ -30,6 +30,7 @@ namespace IReckonu.DataImportingTool.Data.SqlServer
 
 
             builder.RegisterType<GetService>().AsImplementedInterfaces();
+            builder.RegisterType<DatabaseInitializer>().AsImplementedInterfaces();
             builder.RegisterType<SaveService>().Keyed<ISave>(SaveTypes.SQL);
             builder.RegisterDecorator<SaveChangesDecorator, ISave>(context => context.CurrentInstance.GetType() == typeof(SaveService));
         }
