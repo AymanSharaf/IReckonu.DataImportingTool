@@ -14,4 +14,5 @@ RUN dotnet publish "./IReckonu.DataImportingTool.ProcessingApplication/IReckonu.
 FROM mcr.microsoft.com/dotnet/core/runtime:3.1-buster-slim AS final
 WORKDIR /app
 COPY --from=build /app .
-ENTRYPOINT ["dotnet", "IReckonu.DataImportingTool.ProcessingApplication.dll"]
+COPY wait-for-it.sh /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh

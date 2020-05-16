@@ -1,6 +1,19 @@
 version: '3.3'
 
 services:
+    sqlserver:
+        image: "mcr.microsoft.com/mssql/server:2017-latest-ubuntu"
+        container_name: SqlServer
+        environment:
+            MSSQL_SA_PASSWORD: "P@ssw0rd"
+            ACCEPT_EULA: "Y"
+            #cap-add: SYS_PTRACE
+        ports: 
+            - 1433:1433
+        volumes: 
+            - C:\Databases:/var/opt/mssql/data
+        healthcheck:
+                test: sqlcmd -S SqlServer -U SA -P 'P@ssw0rd' -Q 'select @@SERVERNAME'
     api:
         image: dataimportingtool.clientv1.0
         container_name: dataimportingtool.apiv1.0
@@ -13,10 +26,12 @@ services:
             - 5000:80 
         depends_on: 
             - sqlserver
-            - backgroundServer
+            # - backgroundServer
         volumes: 
                 - E:\JsonDataStore:/var/JsonDataStore
                 - E:\FileStorage:/var/FileStorage
+                - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh
+        command: ["wait-for-it.sh", "sqlserver:1433","-t", "30", "--", "dotnet", "IReckonu.DataImportingTool.API.dll"]
 
     backgroundServer:
         image: dataimportingtool.backgroundserverv1.0
@@ -31,16 +46,7 @@ services:
         volumes: 
             - E:\JsonDataStore:/var/JsonDataStore
             - E:\FileStorage:/var/FileStorage
+            - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh
+        command: ["wait-for-it.sh", "sqlserver:1433","-t", "30", "--", "dotnet", "IReckonu.DataImportingTool.ProcessingApplication.dll"]
 
-    sqlserver:
-        image: "mcr.microsoft.com/mssql/server:2017-latest"
-        container_name: SqlServer
-        environment:
-            SA_PASSWORD: "P@ssw0rd"
-            ACCEPT_EULA: "Y"
-        ports: 
-            - 1433:1433
-        volumes: 
-            - C:\Databases:/var/opt/mssql/data
-        healthcheck:
-                test: sqlcmd -S SqlServer -U SA -P 'P@ssw0rd' -Q 'select @@SERVERNAME'
+   
