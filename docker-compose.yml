@@ -7,18 +7,30 @@ services:
         environment:
             MSSQL_SA_PASSWORD: "P@ssw0rd"
             ACCEPT_EULA: "Y"
-            #cap-add: SYS_PTRACE
         ports: 
             - 1433:1433
         volumes: 
             - C:\Databases:/var/opt/mssql/data
         healthcheck:
                 test: sqlcmd -S SqlServer -U SA -P 'P@ssw0rd' -Q 'select @@SERVERNAME'
+
+    rabbitmq:
+            image: rabbitmq:3-management
+            container_name: rabbitmq
+            environment:
+                RABBITMQ_ERLANG_COOKIE: ${RABBITMQ_ERLANG_COOKIE}
+                RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+                RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+            ports:
+                - 5672:5672
+                - 15672:15672
+
     api:
         image: dataimportingtool.clientv1.0
         container_name: dataimportingtool.apiv1.0
         environment:
             - ASPNETCORE_ENVIRONMENT= Production
+            - RabbitMQConnectionString= amqp://rabbitmq:5672
         build: 
             context: .
             dockerfile: API.Dockerfile
@@ -26,10 +38,10 @@ services:
             - 5000:80 
         depends_on: 
             - sqlserver
-            # - backgroundServer
+            - rabbitmq
         volumes: 
-                - E:\JsonDataStore:/var/JsonDataStore
-                - E:\FileStorage:/var/FileStorage
+                - C:\FileStorage\JsonDataStore:/var/JsonDataStore
+                - C:\FileStorage\FileStorage:/var/FileStorage
                 - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh
         command: ["wait-for-it.sh", "sqlserver:1433","-t", "30", "--", "dotnet", "IReckonu.DataImportingTool.API.dll"]
 
@@ -38,14 +50,15 @@ services:
         container_name: dataimportingtool.backgroundserverv1.0
         environment:
             - ENVIRONMENT= Production
+            - RabbitMQConnectionString= amqp://rabbitmq:5672
         build: 
             context: .
             dockerfile: BackgroundServer.Dockerfile
         depends_on: 
             - sqlserver
         volumes: 
-            - E:\JsonDataStore:/var/JsonDataStore
-            - E:\FileStorage:/var/FileStorage
+            - C:\FileStorage\JsonDataStore:/var/JsonDataStore
+            - C:\FileStorage\FileStorage:/var/FileStorage
             - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh
         command: ["wait-for-it.sh", "sqlserver:1433","-t", "30", "--", "dotnet", "IReckonu.DataImportingTool.ProcessingApplication.dll"]
 

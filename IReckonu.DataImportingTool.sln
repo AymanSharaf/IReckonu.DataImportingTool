@@ -31,7 +31,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IReckonu.DataImportingTool.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IReckonu.DataImportingTool.ProcessingApplication", "IReckonu.DataImportingTool.ProcessingApplication\IReckonu.DataImportingTool.ProcessingApplication.csproj", "{D09FAA9B-11F7-4007-BD31-A9A3EE3B5DEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IReckonu.DataImportingTool.Data.Caching", "IReckonu.DataImportingTool.Data.Caching\IReckonu.DataImportingTool.Data.Caching.csproj", "{4AB57EE8-42C4-4FED-AB3B-872C6A462B4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IReckonu.DataImportingTool.Data.Caching", "IReckonu.DataImportingTool.Data.Caching\IReckonu.DataImportingTool.Data.Caching.csproj", "{4AB57EE8-42C4-4FED-AB3B-872C6A462B4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IReckonu.DataImportingTool.Messaging.Messages", "IReckonu.DataImportingTool.Messaging.Messages\IReckonu.DataImportingTool.Messaging.Messages.csproj", "{EBE60826-DAA1-4FF7-9559-AA00FCC31064}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IReckonu.DataImportingTool.Messaging.Abstractions", "IReckonu.DataImportingTool.Messaging.Abstractions\IReckonu.DataImportingTool.Messaging.Abstractions.csproj", "{EC7B164C-84B4-4910-AA95-7E77CF20D8C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IReckonu.DataImportingTool.Messaging.EasyNTQ", "IReckonu.DataImportingTool.Messaging.EasyNTQ\IReckonu.DataImportingTool.Messaging.EasyNTQ.csproj", "{405333F6-1C62-4352-B458-4CC574A92B94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +89,18 @@ Global
 		{4AB57EE8-42C4-4FED-AB3B-872C6A462B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB57EE8-42C4-4FED-AB3B-872C6A462B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB57EE8-42C4-4FED-AB3B-872C6A462B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBE60826-DAA1-4FF7-9559-AA00FCC31064}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBE60826-DAA1-4FF7-9559-AA00FCC31064}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBE60826-DAA1-4FF7-9559-AA00FCC31064}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBE60826-DAA1-4FF7-9559-AA00FCC31064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC7B164C-84B4-4910-AA95-7E77CF20D8C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC7B164C-84B4-4910-AA95-7E77CF20D8C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC7B164C-84B4-4910-AA95-7E77CF20D8C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC7B164C-84B4-4910-AA95-7E77CF20D8C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{405333F6-1C62-4352-B458-4CC574A92B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{405333F6-1C62-4352-B458-4CC574A92B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{405333F6-1C62-4352-B458-4CC574A92B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{405333F6-1C62-4352-B458-4CC574A92B94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +118,9 @@ Global
 		{36790E2E-CCEC-4B79-B963-287733D4EE74} = {175C5E42-FFC4-4361-8E72-F7E4D3FE1D21}
 		{D09FAA9B-11F7-4007-BD31-A9A3EE3B5DEC} = {6A83C10F-C57A-48E6-8445-18842CC277E2}
 		{4AB57EE8-42C4-4FED-AB3B-872C6A462B4C} = {175C5E42-FFC4-4361-8E72-F7E4D3FE1D21}
+		{EBE60826-DAA1-4FF7-9559-AA00FCC31064} = {47E9D891-69DE-4B7F-82DD-F7FBC98746B3}
+		{EC7B164C-84B4-4910-AA95-7E77CF20D8C1} = {47E9D891-69DE-4B7F-82DD-F7FBC98746B3}
+		{405333F6-1C62-4352-B458-4CC574A92B94} = {175C5E42-FFC4-4361-8E72-F7E4D3FE1D21}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25E8D91A-B81F-4A7A-84C5-14C3F48BAEE6}

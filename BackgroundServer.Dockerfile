@@ -7,7 +7,7 @@ RUN dotnet publish "./IReckonu.DataImportingTool.Data/IReckonu.DataImportingTool
 RUN dotnet publish  "./IReckonu.DataImportingTool.Data.Caching/IReckonu.DataImportingTool.Data.Caching.csproj" -c Release -o /app 
 RUN dotnet publish  "./IReckonu.DataImportingTool.Data.SqlServer/IReckonu.DataImportingTool.Data.SqlServer.csproj" -c Release -o /app 
 RUN dotnet publish  "./IReckonu.DataImportingTool.Application/IReckonu.DataImportingTool.Application.csproj" -c Release -o /app 
-RUN dotnet publish  "./IReckonu.DataImportingTool.BackgroundJobs.Hangfire/IReckonu.DataImportingTool.BackgroundJobs.Hangfire.csproj" -c Release -o /app 
+RUN dotnet publish  "./IReckonu.DataImportingTool.Messaging.EasyNTQ/IReckonu.DataImportingTool.Messaging.EasyNTQ.csproj" -c Release -o /app
 RUN dotnet publish "./IReckonu.DataImportingTool.ProcessingApplication/IReckonu.DataImportingTool.ProcessingApplication.csproj" -c Release -o /app  
 
 # Stage 2
