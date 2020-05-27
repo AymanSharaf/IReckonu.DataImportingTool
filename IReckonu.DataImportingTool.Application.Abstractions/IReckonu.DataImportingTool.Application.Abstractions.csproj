@@ -8,6 +8,8 @@
     <ProjectReference Include="..\IReckonu.DataImportingTool.BackgroundJobs.Abstractions\IReckonu.DataImportingTool.BackgroundJobs.Abstractions.csproj" />
     <ProjectReference Include="..\IReckonu.DataImportingTool.Data.Abstractions\IReckonu.DataImportingTool.Data.Abstractions.csproj" />
     <ProjectReference Include="..\IReckonu.DataImportingTool.Domain\IReckonu.DataImportingTool.Domain.csproj" />
+    <ProjectReference Include="..\IReckonu.DataImportingTool.Messaging.Abstractions\IReckonu.DataImportingTool.Messaging.Abstractions.csproj" />
+    <ProjectReference Include="..\IReckonu.DataImportingTool.Messaging.Messages\IReckonu.DataImportingTool.Messaging.Messages.csproj" />
   </ItemGroup>
 
 </Project>

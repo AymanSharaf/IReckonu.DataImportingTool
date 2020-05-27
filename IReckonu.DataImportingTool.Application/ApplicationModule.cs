@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
 using IReckonu.DataImportingTool.Application.ApplicationServices;
+using IReckonu.DataImportingTool.Application.MessageHandlers;
 using Serilog;
 using Serilog.Core;
 using System;
@@ -23,6 +24,7 @@ namespace IReckonu.DataImportingTool.Application
             builder.RegisterType<DataImportApplicationService>().AsImplementedInterfaces().EnableInterfaceInterceptors().InterceptedBy(typeof(LoggerInterceptor));
             builder.RegisterType<FileManagementApplicationService>().AsImplementedInterfaces().EnableInterfaceInterceptors().InterceptedBy(typeof(LoggerInterceptor));
             builder.RegisterType<DataProcessingApplicationService>().AsImplementedInterfaces().EnableInterfaceInterceptors().InterceptedBy(typeof(LoggerInterceptor));
+            builder.RegisterType<FileUploadedAsyncMessageHandler>().AsImplementedInterfaces();
             builder.Register(c =>
             {
                 var log = new LoggerConfiguration()

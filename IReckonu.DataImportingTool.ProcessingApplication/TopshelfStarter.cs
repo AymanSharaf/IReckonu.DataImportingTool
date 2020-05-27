@@ -1,12 +1,16 @@
 ﻿using Autofac;
 using Castle.Core.Configuration;
+using IReckonu.DataImportingTool.Application.Abstractions.MessageHandlers;
 using IReckonu.DataImportingTool.BackgroundJobs.Abstractions;
 using IReckonu.DataImportingTool.Data.Abstractions;
+using IReckonu.DataImportingTool.Messaging.Abstractions;
+using IReckonu.DataImportingTool.Messaging.Messages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Topshelf;
@@ -19,22 +23,22 @@ namespace IReckonu.DataImportingTool.ProcessingApplication
         {
             HostFactory.Run(hostConfigrator =>
             {
-                hostConfigrator.Service<IBackgroundJobServer>(service =>
+                hostConfigrator.Service<IMessagingBus>(service =>
                 {
                     service.ConstructUsing(settings =>
                     {
-                        var service = host.Services.GetRequiredService<IBackgroundJobServer>();
+                        var service = host.Services.GetRequiredService<IMessagingBus>();
                         return service;
                     });
                     service.WhenStarted(async s =>
                     {
-                        var configurator = host.Services.GetService<IBackgroundServerConfigurator>();
+                        var fileUploadedHandler = host.Services.GetService<IFileUploadedAsyncMessageHandler>();
                         var databaseInitializer = host.Services.GetService<IDatabaseInitializer>();
                         await databaseInitializer.Initialize();
-                        configurator.Configure(host.Services);
-                        s.Start();
+                        s.SubscribeAsync<FileUploaded>($"{Assembly.GetExecutingAssembly().GetName().Name}.FileUploaded", fileUploadedHandler.Handle);
+
                     });
-                    service.WhenStopped(service => service.Stop());
+                    service.WhenStopped(service => { });
                 });
 
                 hostConfigrator.RunAsLocalSystem()
